@@ -1,16 +1,66 @@
-% Titelseite
+% Beginne Intro
+\begingroup
+% Zeilenabstand innerhalb der itemize- und enumerate-Umgebungen auf Null setzen
+\setlist{noitemsep}
+%Dokumentenvorspann, also Vorwort, Inhalt usw.
+%R"omische Ziffern (gro"s) zur Nummerierung des Vorspanns
+\pagenumbering{Roman}
+
+% Daten f"ur Titelseite definieren
+% Titel der Arbeit
+\title{Script "Offentlichen Recht}
+
+% Ersteller mit Adresse
+\author{Sebastian Muster\\Musterstra"se 30\\08151 Musterstadt}
+
+%Titelseite setzen
 \begin{titlepage}
-\begin{small} \vfill {Universität\\ Semester} \end{small}
-\begin{center} \begin{Large}\vfill {\textsf{\textbf{Script \\ \dots}}} \end{Large} \end{center}
-\begin{small} \vfill Autor\\ \today \end{small}
+
+%Autor/Adresse setzen, rechts das Datum, dazwischen auff"ullen
+\makeatletter
+\noindent\@author\hfill\@date
+\makeatother
+
+\vspace{3cm}
+
+%% Den ganzen Text auf der Titelseite zentrieren
+\begin{center}
+
+{%\sffamily
+\bfseries\hrulefill
+
+\makeatletter
+\Huge\@title
+\makeatother
+
+
+\hrulefill}
+
+\end{center}
 \end{titlepage}
 
+\chapter*{Vorwort}
+Der Bundestag beschlie"st ein Gesetz. Der Bundespr"asident findet das nicht so prickelnd und will es nicht
+unterschreiben. Er fragt einen Feld-, Wald- und Wiesenanwalt, ob er muss.
+\clearpage
 
-% Inhaltsverzeichnis
+\setcounter{tocdepth}{3}
+% Inhaltsverzeichnis (Gliederung) erstellen
 \tableofcontents
 
-
-% Einbindung der Bibliografie
+%Literaturverzeichnis jurlit.bib
+%Der Seitenrand spielt hier irgendwie nicht mit :(
 \nocite{*} % alle Eintrge in der Bib anzeigen
-\bibliographystyle{jurabib}
 \bibliography{script}
+\bibliographystyle{jurabib}
+Gebraucht werden die üblichen Abkürzungen, vgl. Kirchner,
+Hildebert/Butz, Cornelie: Abkürzungsverzeichnis der Rechtssprache, 5.
+Aufl., Berlin/New York 2003
+
+%Stellt sicher, dass die letzte Seite ausgegeben ist, bevor die Gruppe endet.
+%Diese L"osung funktioniert m"oglicherweise nicht mit k"unftigen Versionen von KOMA-Script!
+%http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/a4cd123873925372/eeebf6ccf4cfac04?hl=de#eeebf6ccf4cfac04
+\clearpage
+
+%Ende des Teils mit normalem Seitenrand
+\endgroup

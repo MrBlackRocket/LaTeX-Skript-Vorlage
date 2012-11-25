@@ -1,3 +1,11 @@
-\onehalfspacing % Zeilenabstand 
-\pagestyle{plain} % mit Seitennummerierung
-\setlist{noitemsep} % Zeilenabstand innerhalb der itemize- und enumerate-Umgebungen auf Null setzen
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\thispagestyle{plain}
+% Sonst klafft unten ein riesiger Leerraum
+\enlargethispage{12em}
+
+% Anderthalbfacher Zeilenabstand
+\onehalfspacing
+
+% Zeilenabstand innerhalb der itemize- und enumerate-Umgebungen auf Null setzen
+\setlist{noitemsep}

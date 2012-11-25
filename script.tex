@@ -1,24 +1,31 @@
 % scrreprt-Klasse
-\documentclass[headings=small,headsepline,12pt, a4paper, chapterprefix=false]{scrreprt}
+\documentclass[oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false]{scrreprt}
+
+% Schaltet auf eine großzügige Formatierungsweise um, die relativ wenige Worttrennungen am Zeilenende erzeugt, dafür aber auch etwas größere Wortabstände innerhalb der Zeilen zuläßt.
+%\sloppy
+
+% Schriftauswahl
+\input{./preamble/fonts/droid.tex}
+%\input{./preamble/fonts/default.tex}
 
 % Kopfbereiches
+\input{./preamble/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
 \input{./preamble/preamble.tex}
 
 \begin{document}
 
-% Formatierung für den Inhalt
-\input{./preamble/format.tex}
-
 % Titelseite, Inhaltsverzeichnis
 \input{./content/intro.tex}
+
+% Formatierung für den Inhalt
+\input{./preamble/format.tex}
 
 %-------------
 % Hauptteil
 %-------------
-\include{./content/part01}
+%\include{./content/part01}
 
 
-
-\include{./appendix/appendix} % Anhänge
+%\include{./appendix/appendix} % Anhänge
 \end{document}
  
