@@ -1,0 +1,24 @@
+% scrreprt-Klasse
+\documentclass[headings=small,headsepline,12pt, a4paper, chapterprefix=false]{scrreprt}
+
+% Kopfbereiches
+\input{./preamble/preamble.tex}
+
+\begin{document}
+
+% Formatierung für den Inhalt
+\input{./preamble/format.tex}
+
+% Titelseite, Inhaltsverzeichnis
+\input{./content/intro.tex}
+
+%-------------
+% Hauptteil
+%-------------
+\include{./content/part01}
+
+
+
+\include{./appendix/appendix} % Anhänge
+\end{document}
+ 
