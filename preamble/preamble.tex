@@ -1,0 +1,451 @@
+\input{./preamble/preambelcommands.tex} % Quelle http://www.matthiaspospiech.de/latex/vorlagen/allgemein/preambel/
+\sloppy
+%----------------------------------
+% laden der Verschiedenen Pakete
+%----------------------------------
+% erweitertes Farbpaket
+\usepackage{xcolor}
+
+% Grafikpaket
+\usepackage{graphicx}
+
+%========
+% Schrift & Sprache
+% Schriftsatz utf8 und Deutsch
+\usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden 
+\usepackage[T1]{fontenc} % T1-Fonts
+\usepackage[ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung (neue Rechtschreibung)
+
+% Schrift
+\usepackage{mathptmx} % Times Roman als Standardschrift
+\usepackage[scaled=.92]{helvet} % Arial für die Überschriften
+\usepackage{courier} % PostScript Schriftarten (Courier)
+\usepackage{marvosym} % diverse Symbole
+\usepackage{wasysym}
+\usepackage{eurosym} % Euro Symbole
+
+
+% franz. Anführungszeichen verwenden
+\usepackage[babel,german=guillemets]{csquotes}
+
+% für Greek im Text
+\usepackage{textgreek}
+\usepackage{eulervm}
+	
+% behebt Makrogrenz-Problem
+\usepackage{xspace}
+
+% erlaubt es Text zu drehen
+\usepackage{rotating}
+%========
+% Tabellen
+% bessere Tabellen
+\usepackage{tabularx}
+
+%Fussnoten innerhalb von Tabellen
+\usepackage[para]{threeparttable}
+
+% erlaubt Farbige Zellen
+\usepackage{colortbl}
+
+\usepackage{booktabs}
+
+%========
+% andere Pakete
+
+% Jurabib für die Bibliographie
+\usepackage{jurabib}
+
+% Paket zur Texthervorhebung
+\usepackage{soul}
+
+% für hervor gehobene Boxen
+\usepackage{framed} 
+
+% Anpassbare Enumerates/Itemizes
+\usepackage{enumitem}
+
+% zur Darstellung von Definitionen
+\usepackage[amsthm,thmmarks]{ntheorem}
+
+% für Zeilenabstand
+\usepackage{setspace} 
+
+% für Randnotizen (von den Randnummern verwendet)
+\usepackage{marginnote}
+
+% ermöglicht das anpassen der Titel
+\usepackage{titlesec}
+
+
+%----------------------------------
+% Pakete mit Config
+%----------------------------------
+
+% normaler Seitenrand
+\usepackage[%
+	a4paper, 
+	left=25mm, 
+	right=25mm, 
+	top=3cm, 
+	bottom=3cm
+]{geometry}
+
+\usepackage[
+   % Farben fuer die Links
+   colorlinks=true,         % Links erhalten Farben statt Kaeten
+   urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
+   filecolor=pdffilecolor,  % \href{...} local file
+   linkcolor=pdflinkcolor,  % \ref{...} and \pageref{...}
+   % Links
+   raiselinks=true,			 % calculate real height of the link
+   backref=false,            % Backlinks im Literaturverzeichnis (section, slide, page, none)
+   pagebackref=false,         % Backlinks im Literaturverzeichnis mit Seitenangabe
+   verbose,
+   hyperindex=true,         % backlinkex index
+   linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
+   hyperfootnotes=true,     % Keine Links auf Fussnoten
+   % Bookmarks
+   bookmarks=true,          % Erzeugung von Bookmarks fuer PDF-Viewer
+   bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
+   %bookmarksopen=true,      % Expandierte Untermenues in Bookmarks
+   bookmarksnumbered=true,  % Nummerierung der Bookmarks
+   bookmarkstype=toc,       % Art der Verzeichnisses
+   % Anchors
+   plainpages=false,        % Anchors even on plain pages ?
+   pageanchor=true,         % Pages are linkable
+   % PDF Informationen
+   pdftitle={},             % Titel
+   pdfauthor={},            % Autor
+   pdfcreator={LaTeX, hyperref, KOMA-Script}, % Ersteller
+   %pdfproducer={pdfeTeX 1.10b-2.1} %Produzent
+   pdfstartview=FitH,       % Dokument wird Fit Width geaefnet
+   pdfpagemode=UseOutlines, % Bookmarks im Viewer anzeigen
+   pdfpagelabels=true,      % set PDF page labels
+]{hyperref}
+
+% URL Paket (darf erst nach hyperref geladen werden
+\usepackage{url} 
+
+
+%----------------------------------
+% Config
+%----------------------------------
+
+% ========
+% Bibliographie und Fußnoten
+
+% Konfiguriert das jurabib-Paket. Kommentare aus der Dokumentation
+\jurabibsetup{%
+	authorformat=italic, 		% Autor kursiv
+	titleformat={commasep,all}, % Komma zwischen Autor/Bearbeiter und Titel im Zitat;
+	annotatorformat=italic, 	% Bearbeiter kursiv
+	annotatorlastsep=divis, 	% Bearbeiter nach Bindestrich
+	commabeforerest, 			% Komma nach Verfasser (vor dem Rest)
+	crossref={long,dynamic}, 	% Lange Querverweise (auf Festschriften etwa)
+	howcited=compare, 			%"zitiert als...", wenn shorttitle anders als title
+	pages={always,test}, 		% zitierten Seitenbereich immer ausgeben (always),
+	bibformat={tabular,ibidem}, % Litverz. tabellarisch, mit der-/dieselbe
+	lookforgender, 				% Auf das gender-Feld achten, um ders./dies. Zitate zu ermglichen
+	superscriptedition=switch, 	% Hochgestellte Auflage, wenn ssedition=1 in .bib
+	dotafter=bibentry, 			% Punkt nach jedem Eintrag im Lit.verzeichnis
+}
+
+\citetitlefortype{article,periodical,incollection} % Diese immer mit Titel zitieren
+\formatpages[~]{article}{(}{)} % Zeitschriften als JZ 2001, 1057, (S.) %[, ]
+\formatpages[~]{incollection}{(}{)} % Sammbelbandbeiträge als FS xy, 1057, (S.) %[, ]
+
+%Bei Festschriften und Zeitschriftenartikeln: "`in"' vor Titel der Sammlung
+\renewcommand{\bibjtsep}{In: } 
+\renewcommand{\bibbtsep}{In: } 
+
+%Bei Periodika (AcP et.al.) die Jahreszahl in runde (statt eckige) Klammern setzen.
+\renewcommand*{\bibpldelim}{(}
+\renewcommand*{\bibprdelim}{)}
+
+%Linke Spalte des Lit.verz. soll ein Drittel der ges. Textbreite einnehmen
+\renewcommand*{\bibleftcolumn}{\textwidth/3}
+
+%Nicht Punkt, sondern Komma nach Auflage
+\DeclareRobustCommand{\jbaensep}{,}
+
+%Bei Artikeln: Heft-Nummer in Klammern hinter dem Erscheinungsjahr, etwa 2002(7). (aus jurabib-Gruppe)
+\DeclareRobustCommand{\artnumberformat}[1]{(#1)}
+
+%Kein Komma hinter Zeitschriftenname (aus: jurabib-Gruppe #661)
+\AddTo\bibsgerman{\def\ajtsep{}}
+
+% Keine hochgestellten Ziffern in der Fussnote (KOMA-Script-spezifisch):
+\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
+\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fussnote
+ 
+\setlength{\dimen\footins}{10\baselineskip} % Beschraenkt den Platz von Fussnoten auf 10 Zeilen
+ 
+\interfootnotelinepenalty=10000 % Verhindert das Fortsetzen von Fussnoten auf der gegenüberligenden Seite
+                                
+%fuer URL (nur wenn url geladen ist)
+\IfDefined{urlstyle}{
+	\urlstyle{tt} % URLs in Typewriter
+}
+
+% ========
+% Farben 
+% Farbe der Ueberschriften
+\definecolor{sectioncolor}{RGB}{0, 0, 0}    % Schwarz
+%
+% Farbe des Textes
+\definecolor{textcolor}{RGB}{0, 0, 0}        % Schwarz
+\definecolor{darkgreen}{RGB}{0,100,0}		 % Dunkelgrün
+\definecolor{darkred}{RGB}{139,0,0}			 % Dunkelrot
+\definecolor{grey97}{RGB}{247,247,247}		 % grey97
+%
+% Farbe fuer grau hinterlegte Boxen (fuer Paket framed.sty)
+\definecolor{shadecolor}{gray}{0.90}
+
+% Farben fuer die Links im PDF
+\definecolor{pdfurlcolor}{rgb}{0.6,0,0}
+\definecolor{pdffilecolor}{rgb}{0,0,0}
+\definecolor{pdflinkcolor}{rgb}{0,0,0}
+ 
+% Farben fuer Listings
+%\colorlet{stringcolor}{green!40!black!100}
+\colorlet{commencolor}{blue!0!black!100}
+
+% ========
+% Layout
+
+% Absätze nicht einrücken
+\setlength{\parindent}{0pt}
+
+
+% keine automatische Nummerierung der Überschriften
+\setcounter{secnumdepth}{-1} 
+
+% Abstand zwischen chapter und Kopf um 1cm verkleinern
+\renewcommand*\chapterheadstartvskip{\vspace*{-1cm}} 
+
+% \part angepasst
+\titleformat{\part}[display]{\normalfont\bfseries\LARGE\filcenter}{}{.5em}{}
+
+% für lange Zitate
+\newenvironment{bquote}% 
+   {\begin{quotation}\small}% 
+   {\end{quotation}}% 
+\SetBlockEnvironment{bquote}
+
+% für kurze Zitate
+\newenvironment{squote}% 
+   {\begin{quote}\small}% 
+   {\end{quote}}% 
+\SetBlockEnvironment{squote}
+
+% \chapter nicht auf neuer Seite beginnen
+%\makeatletter
+%\renewcommand{\chapter}{\par
+%  \thispagestyle{\chapterpagestyle}%
+%  \global\@topnum\z@
+%  \@afterindentfalse
+%  \secdef\@chapter\@schapter
+%}
+%\makeatother
+
+% neuer Tabellenspaltentyp C (X zentriert)
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% ========
+% Definitionen und andere
+\theoremstyle{nonumberplain}
+\theoremseparator{:}
+\theoremsymbol{}
+\newtheorem{defi}{Definition}
+
+% ========
+% BOXEN
+
+% Rahmen: schwarz; Füllung: weiß; Aufruf: wbox
+\newenvironment{wbox}{%
+  \def\FrameCommand{\fboxrule 0.2mm \fcolorbox{black}{white}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+ 
+% Rahmen: weiß; Füllung: weiß; Aufruf: fuellbox
+ \newenvironment{fuellbox}{%
+  \def\FrameCommand{\fboxrule 0.2mm \fcolorbox{white}{white}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+
+% Rahmen: schwarz; Füllung: helles grau; Aufruf: defaultbox
+\newenvironment{defaultbox}{%
+  \def\FrameCommand{\fboxrule 0.5mm \fcolorbox{black}{lightgray}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+ 
+% Rahmen: schwarz; Füllung: helles grau; Aufruf: defaultbox
+\newenvironment{darkgreen}{%
+  \def\FrameCommand{\fboxrule 0.5mm \fcolorbox{darkgreen}{white}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+ 
+% Rahmen: rot; Füllung: gelb; Aufruf: wichtig
+\newenvironment{wichtig}{%
+  \def\FrameCommand{\fboxrule 0.5mm \fcolorbox{red}{yellow}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+
+% ========
+% Jura spezial
+
+% \pg{x} => (Paragraf) x
+\newcommand{\pg}[1]{\S\,#1} 
+
+% \Pg{x} => (Paragrafen) x 
+\newcommand{\Pg}[1]{\SSS\,#1}
+
+% =========
+% Abkuerzungen Quelle jurabase.sty
+
+\newcommand*{\abkwarning}{
+	Keine Abkuerzungen am Satzanfang!}
+
+\newcommand*{\hM}{% Abkuerzung fuer herrschende Ansicht
+h.\,M.\xspace}
+
+\newcommand*{\aF}{% Abkuerzung fuer alte Fassung
+a.\,F.\xspace}
+
+\newcommand*{\aA}{% Abkuerzung fuer andere Ansicht
+a.\,A.\xspace}
+
+\newcommand*{\AnA}{% Abkuerzung fuer andere Ansicht - die wird zugelassen, weil ueblich!
+A.\,A.\xspace}
+
+\newcommand*{\aM}{% Abkuerzung fuer andere(r) Meinung 
+a.\,M.\xspace}
+
+\newcommand*{\aaO}{% Abkuerzung fuer am angegebenen Ort
+a.\,a.\,O.\xspace}
+
+\newcommand*{\aE}{% Abkuerzung fuer am Ende
+a.\,E.\xspace}
+
+\newcommand*{\iVm}{% Abkuerzung fuer in Verbindung mit
+i.\,V.\,m.\xspace}
+
+\newcommand*{\iHv}{% Abkuerzung fuer in Hoehe von
+i.\,H.\,v.\xspace}
+
+\newcommand*{\zB}{% Abkuerzung fuer z.B.
+z.\,B.\xspace}
+
+\newcommand*{\ZB}{%
+\abkwarning% 
+Zum Beispiel\xspace}
+
+\newcommand*{\iS}{% Abkuerzung fuer i.S.
+i.\,S.\xspace}
+
+\newcommand*{\iUe}{% Abkuerzung fuer im Uebrigen (neue Rechtschreibung)
+i.\,\"U.\xspace}%
+
+\newcommand*{\iA}{% Abkuerzung fuer im Allgemeinen neue Rechtschreibung laut Duden
+i.\,Allg.\xspace}
+
+\newcommand*{\iE}{% Abkuerzung fuer im Ergebnis
+i.\,Erg.\xspace}
+
+\newcommand*{\IE}{% Abkuerzung fuer Im Ergebnis
+\abkwarning%
+Im Ergebnis\xspace}
+
+\newcommand*{\iR}{% Abkuerzung fuer i.R.
+i.\,R.\xspace}
+
+\newcommand*{\sa}{% Abkuerzung fuer siehe auch
+s.\,a.\xspace}
+
+\newcommand*{\Sa}{% Abkuerzung fuer Siehe auch
+\abkwarning%
+Siehe auch\xspace}
+
+\newcommand*{\So}{% Abkuerzung fuer Siehe oben
+\abkwarning%
+Siehe oben\xspace}
+
+\newcommand*{\su}{% Abkuerzung fuer siehe unten
+s.\,u.\xspace}
+
+\newcommand*{\Su}{% Abkuerzung fuer Siehe unten
+\abkwarning%
+Siehe unten\xspace}
+
+\newcommand*{\oae}{% Abkuerzung fuer o.ae.
+o.\,\"a.\xspace} %???
+
+\newcommand*{\oa}{% Abkuerzung fuer oben angegeben
+o.\,a.\xspace}
+
+\newcommand*{\og}{% Abkuerzung fuer oben genannten
+o.\,g.\xspace}
+
+\newcommand*{\mE}{% Abkuerzung fuer meines Erachtens
+m.\,E.\xspace}
+
+\newcommand*{\maW}{% Abkuerzung fuer mit anderen Worten
+m.\,a.\,W.\xspace}
+
+\newcommand*{\MaW}{% Abkuerzung fuer Mit anderen Worten
+\abkwarning%
+Mit anderen Worten\xspace}
+
+\newcommand*{\mwN}{% Abkuerzung fuer m.w.N.
+m.\,w.\,N.\xspace}
+
+\newcommand*{\nF}{% Abkuerzung fuer neue Fassung
+n.\,F.\xspace}
+
+\newcommand*{\usw}{% Abkuerzung fuer u.s.w.
+u.\,s.\,w.\xspace}
+
+\newcommand*{\idR}{% Abkuerzung fuer in der Regel
+i.\,d.\,R.\xspace}
+
+\newcommand*{\ua}{% Abkuerzung fuer unter anderem
+u.\,a.\xspace}
+
+\newcommand*{\uae}{% Abkuerzung fuer u.ae.
+u.\,\"a.\xspace} %???
+
+\newcommand*{\uU}{% Abkuerzung fuer unter Umstaenden
+u.\,U.\xspace}
+
+\newcommand*{\vAw}{% Abkuerzung fuer von Amts wegen
+v.\,A.\,w.\xspace}
+
+\newcommand*{\va}{% Abkuerzung fuer vor allem
+v.\,a.\xspace}
+
+\newcommand*{\zT}{% Abkuerzung fuer zum Teil
+z.\,T.\xspace} 
+
+% ========
+% Randnummern
+\setlength{\marginparwidth}{15mm}
+\marginparsep1mm
+\newcounter{randnummer}
+\normalmarginpar
+
+\newcommand{\rn}[1]{%
+\refstepcounter{randnummer}{#1}%
+\marginnote{\quad\textbf{\arabic{randnummer}}}}
+
+% ========
+% Listen
+\newlist{steps}{itemize}{8}
+\setlist[steps,1]{label=\textbullet}
+\setlist[steps,2]{label=\textasteriskcentered}
+\setlist[steps,3]{label=$\diamondsuit$}
+\setlist[steps,4]{label=$\star$}
+\setlist[steps,5]{label=$\alpha$}
+\setlist[steps,6]{label=\Square}
+\setlist[steps,7]{label=\fullnote}
+\setlist[steps,8]{label=\varhexstar}
