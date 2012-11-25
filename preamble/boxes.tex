@@ -1,0 +1,211 @@
+% ========
+% Diverse Boxen
+% Inspiriert durch die mdframed Beispiele und jur-info.sty von Peter Felix Schuster (http://www.peterfelixschuster.de/)
+
+% Fieldset Box 
+% Verwendung \begin{fameexercise}{<TITEL>}<INHALT>\end{fameexercise}
+\tikzstyle{titregris} =
+     [draw=gray, thick, fill=white, shading = exersicetitle, %
+      text=gray, rectangle, rounded corners, right,minimum height=.7cm]
+\pgfdeclarehorizontalshading{exersicebackground}{100bp}
+          {color(0bp)=(green!40); color(100bp)=(black!5)}
+\pgfdeclarehorizontalshading{exersicetitle}{100bp}
+          {color(0bp)=(red!40);color(100bp)=(black!5)}
+
+\makeatletter
+\def\mdf@@theexercisetitle{}%new mdframed key:
+\define@key{mdf}{theexercisetitle}{%
+    \def\mdf@@theexercisetitle{#1}
+}
+\mdfdefinestyle{exercisestyle}{%
+  outerlinewidth=1em,outerlinecolor=white,%
+  leftmargin=-1em,rightmargin=-1em,%
+  middlelinewidth=1.2pt,roundcorner=5pt,linecolor=gray,
+  apptotikzsetting={\tikzset{mdfbackground/.append style ={%
+                       shading = exersicebackground}
+                       }},
+  innertopmargin=1.2\baselineskip,
+  skipabove={\dimexpr0.5\baselineskip+\topskip\relax},
+  skipbelow={-1em},
+  needspace=3\baselineskip,
+  frametitlefont=\sffamily\bfseries,
+    %frametitlebackgroundcolor=exersicetitle,
+  settings={\global},
+   singleextra={%
+        \node[titregris,xshift=1cm] at (P-|O) %
+           {~\mdf@frametitlefont{\mdf@@theexercisetitle}~};
+     },
+    firstextra={%
+        \node[titregris,xshift=1cm] at (P-|O) %
+           {~\mdf@frametitlefont{\mdf@@theexercisetitle}~};
+     },
+}
+\makeatother
+
+\newenvironment{fameexercise}[1]% 
+   {\begin{mdframed}[style=exercisestyle,theexercisetitle={#1}]}% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{fameexercise}
+
+% Vor dem Text ein Stopschild und roter Text 
+% Verwendung \begin{stopschild} <INHALT> \end{stopschild}
+\tikzset{
+  warningsymbol/.style={
+      rectangle,draw=red,
+      fill=white,scale=1,
+      overlay}}
+\mdfdefinestyle{warning}{%
+ hidealllines=true,leftline=true,
+ skipabove=12,skipbelow=12pt,
+ innertopmargin=0.4em,%
+ innerbottommargin=0.4em,%
+ innerrightmargin=0.7em,%
+ rightmargin=0.7em,%
+ innerleftmargin=1.7em,%
+ leftmargin=0.7em,%
+ middlelinewidth=.2em,%
+ linecolor=red,%
+ fontcolor=red,%
+ firstextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$)
+                           node[warningsymbol] {{\huge \Stopsign}};},%
+ secondextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$)
+                           node[warningsymbol] {{\huge \Stopsign}};},%
+ middleextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$)
+                           node[warningsymbol] {{\huge \Stopsign}};},%
+ singleextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$)
+                           node[warningsymbol] {{\huge \Stopsign}};},%
+}
+\newenvironment{stopschild}% 
+   {\begin{mdframed}[style=warning]}% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{stopschild}
+
+% Verweis Box 
+% Verwendung \begin{verweis}{<TITEL>}<INHALT>\end{verweis}
+\tikzset{
+   excursus arrow/.style={%
+      line width=2pt,
+      draw=gray!40,
+      rounded corners=2ex,
+   },
+   excursus head/.style={
+      fill=white,
+      font=\bfseries\sffamily,
+      text=gray!80,
+      anchor=base west,
+   },
+}
+\makeatletter
+\def\mdf@@thetitle{}%new mdframed key:
+\define@key{mdf}{thetitle}{%
+    \def\mdf@@thetitle{#1}
+}
+\mdfdefinestyle{digressionarrows}{%
+ singleextra={%
+      \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+      \path let \p1=(Q), \p2=(O) in (\x1,{(\y1-\y2)/2}) coordinate (M);
+      \path [excursus arrow, round cap-to]
+         ($(O)+(5em,0ex)$) -| (M) |- %
+         ($(Q)+(12em,0ex)$) .. controls +(0:16em) and +(185:6em) .. %
+         ++(23em,2ex);
+      \node [excursus head] at ($(Q)+(2.5em,-0.75pt)$) {\mdf@@thetitle};},
+ firstextra={%
+      \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+      \path [excursus arrow,-to]
+         (O) |- %
+         ($(Q)+(12em,0ex)$) .. controls +(0:16em) and +(185:6em) .. %
+         ++(23em,2ex);
+      \node [excursus head] at ($(Q)+(2.5em,-2pt)$) {\mdf@@thetitle};},
+ secondextra={%
+      \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+      \path [excursus arrow,round cap-]
+         ($(O)+(5em,0ex)$) -| (Q);},
+ middleextra={%
+      \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+      \path [excursus arrow]
+         (O) -- (Q);},
+   middlelinewidth=2.5em,middlelinecolor=white,
+   hidealllines=true,topline=true,
+   innertopmargin=0.5ex,
+   innerbottommargin=2.5ex,
+   innerrightmargin=2pt,
+   innerleftmargin=2ex,
+   skipabove=0.87\baselineskip,
+   skipbelow=0.62\baselineskip,
+}
+\makeatother
+\newenvironment{verweis}[1]% 
+   {\begin{mdframed}[style=digressionarrows,thetitle={#1}]}% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{verweis}
+
+% Graue Box 
+% Verwendung \begin{greybox} <INHALT> \end{greybox}
+\global\mdfdefinestyle{greybox}{%
+     outerlinewidth=0.1mm,innerlinewidth=0pt,
+     linecolor=black,roundcorner=5pt,backgroundcolor=grey97,
+     innerleftmargin=5pt;innerrightmargin=5pt,innertopmargin=5pt.innerbottommargin=5pt,
+}
+\newenvironment{greybox}% 
+   {\begin{mdframed}[style=greybox]}% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{greybox}
+
+% Weiße Box 
+% Verwendung \begin{whitebox} <INHALT> \end{whitebox}
+\global\mdfdefinestyle{whitebox}{%
+     outerlinewidth=0.1mm,innerlinewidth=0pt,
+     linecolor=black,roundcorner=5pt,backgroundcolor=white,
+     innerleftmargin=5pt;innerrightmargin=5pt,innertopmargin=5pt.innerbottommargin=5pt,
+}
+\newenvironment{whitebox}% 
+   {\begin{mdframed}[style=whitebox]}% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{whitebox}
+
+% Blaue Info Box 
+% Verwendung \begin{infobox} <INHALT> \end{infobox}
+\newcommand{\infosymbol}[1]{\noindent\umfluss[2]{\Huge #1}}
+
+\global\mdfdefinestyle{infobox}{%
+     outerlinewidth=0.1mm,innerlinewidth=0pt,
+     linecolor=blau2,roundcorner=5pt,backgroundcolor=blau1,
+     innerleftmargin=5pt;innerrightmargin=5pt,innertopmargin=5pt.innerbottommargin=5pt,
+}
+\newenvironment{infobox}% 
+   {\begin{mdframed}[style=infobox,frametitle={{\Large \Info \hspace{0.3em} Hinweis} \vspace{1em}}]}% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{infobox}
+
+% WICHTIG Box 
+% Verwendung \begin{wichtibox} <INHALT> \end{wichtigbox}
+\global\mdfdefinestyle{wichtigbox}{%
+     outerlinewidth=0.2mm,innerlinewidth=0pt,
+     linecolor=red,roundcorner=5pt,backgroundcolor=white,fontcolor=black,
+     innerleftmargin=5pt;innerrightmargin=5pt,innertopmargin=5pt.innerbottommargin=5pt,
+}
+\newenvironment{wichtigbox}% 
+   {\begin{mdframed}[style=wichtigbox,frametitle={\textcolor{red}{{\Large \Lightning \hspace{0.3em} Wichtig}} \vspace{0.5em}}] }% 
+   {\end{mdframed}}% 
+\SetBlockEnvironment{wichtigbox}
+
+% Schemata Box 
+% Verwendung \begin{schema}{<TITEL>} <INHALT> \end{schema}
+\mdtheorem[%
+ apptotikzsetting={\tikzset{mdfbackground/.append style =%
+                              {top color=blue!20!white,
+                               bottom color=blue!20!white},
+                            mdfframetitlebackground/.append style =%
+                               {top color=blue!10!white,
+                                bottom color=blue!10!white}
+                           }%
+                    },
+  ,roundcorner=10pt,middlelinewidth=0pt,
+  shadow=false,frametitlerule=true,frametitlerulewidth=1pt,
+  innertopmargin=10pt,%
+  ]{alternativschema}{Schema}
+  
+\newenvironment{schema}[1]% 
+   {\begin{alternativschema}[{#1}]}% 
+   {\end{alternativschema}}% 
+\SetBlockEnvironment{schema}
