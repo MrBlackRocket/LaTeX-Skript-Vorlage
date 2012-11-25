@@ -1,0 +1,221 @@
+% scrreprt-Klasse
+\setcounter{errorcontextlines}{999}
+\documentclass[oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false]{scrreprt}
+
+% Kopfbereiches
+\input{./preamble/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
+\input{./preamble/fonts/droid.tex}
+\input{./preamble/preamble.tex}
+
+\usepackage{showexpl}
+\lstset{%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=2, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b%
+}
+\usepackage{listings}
+\usepackage{blindtext}
+\newcommand{\cmd}[1]{\textcolor{darkgrey}{{\small\texttt{{#1}}}}}
+
+\begin{document}
+
+% Titelseite, Inhaltsverzeichnis
+% Beginne Intro
+\begingroup
+
+%Dokumentenvorspann, also Vorwort, Inhalt usw.
+%R"omische Ziffern (gro"s) zur Nummerierung des Vorspanns
+\pagenumbering{Roman}
+
+% Daten f"ur Titelseite definieren
+% Titel der Arbeit
+\title{readme.pdf\\ von\\ Script Vorlage}
+
+% Ersteller mit Adresse
+\author{Sebastian Bretag\\sebastian@brcs.eu\\www.brcs.eu}
+
+%Titelseite setzen
+\begin{titlepage}
+
+%Autor/Adresse setzen, rechts das Datum, dazwischen auff"ullen
+\makeatletter
+\noindent\@author\hfill\@date
+\makeatother
+
+\vspace{3cm}
+
+%% Den ganzen Text auf der Titelseite zentrieren
+\begin{center}
+
+{%\sffamily
+\bfseries\hrulefill
+
+\makeatletter
+\Huge\@title
+\makeatother
+
+
+\hrulefill}
+
+\end{center}
+\end{titlepage}
+
+\chapter*{Vorwort}
+% Zeilenabstand innerhalb der itemize- und enumerate-Umgebungen auf Null setzen
+\setlist{noitemsep}
+Als ich 2009 meinen Informatikstudium begonnen habe, begann ich auch meine Dokumente mit Hilfe von \LaTeX zuschreiben. Im Informatikbereich ist es auch kein Problem da es sehr viele Lösungen gibt. Aber als ich ein Jahr später in das Rechtsstudium gewechselt bin\footnote{Informatik hat mich nicht gefordert und ist Inhaltlich der Zeit um 1 Jahrzehnt hinterher.}, sah die Sache etwas anderes aus. Es gab bzw. gibt für die Jurisprudenz an und für sich keine vollständigen Lösungen\footnote{Word \& Co. sind juristischen Bereich so etwas wie ein quasi Standard.}, allerdings es gibt sehr gut Ansätze und Ideen.
+\\
+
+Also musste eine eigene Lösung her und hier ist sie, die \cmd{Script Vorlage}, inzwischen in Version 2.0 vorliegend. In dieser Vorlage kommen auch Lösungen zum Einsatz welche nicht von mir sind, an den entsprechenden Stellen im \LaTeX-Code sind die Urheber angegeben.
+\\
+
+Nun zu diesen Dokument. Dieses Dokument ist eine Mischung aus Anleitung und Demonstration der einzelnen Funktionen, welches jedoch keinen Anspruch auf Vollständigkeit erhebt. Für weitergehende Informationen empfehle ich.
+\begin{itemize}
+	\item \href{http://www.linupedia.org/opensuse/LaTeX}{LaTeX WIKI B U C H}
+	\item \href{http://projekte.dante.de/DanteFAQ/WebHome}{Deutsche TeX-FAQ}
+	\item \href{http://de.wikibooks.org/wiki/LaTeX-Kompendium}{LaTeX-Kompendium}
+	\item \href{http://golatex.de/}{goLaTeX - Mein LaTeX-Forum}
+	\item \href{http://mrunix.de/forums/forumdisplay.php?f=38}{LaTeX-Forum LaTeX, LyX, BibteX, PDF \& Co}
+	\item \href{http://www.weinelt.de/latex/index.html}{LaTeX-Befehlsreferenz}
+\end{itemize}
+
+PS: Die aktuellste Version findet ihr immer in meinen \href{https://github.com/BlackRocket/LaTeX-Script-Vorlage}{Git Repo} und wenn ihr über Fehler stolpert, meldet sie bitte unter \href{http://bugs.brcs.eu/index.php?project=2}{bugs.brcs.eu}.  
+\\
+
+PPS: Falls ihr mir etwas gutes tun wollt, so findet ihr meine Wunschliste unter \href{http://wishlist.brcs.eu}{wishlist.brcs.eu}
+\clearpage
+
+\setcounter{tocdepth}{3}
+% Inhaltsverzeichnis (Gliederung) erstellen
+\tableofcontents
+
+%Literaturverzeichnis jurlit.bib
+%Der Seitenrand spielt hier irgendwie nicht mit :(
+\nocite{*} % alle Einträge in der Bib anzeigen
+\bibliography{script}
+\bibliographystyle{jurabib}
+Gebraucht werden die üblichen Abkürzungen, vgl. Kirchner,
+Hildebert/Butz, Cornelie: Abkürzungsverzeichnis der Rechtssprache, 5.
+Aufl., Berlin/New York 2003
+
+%Stellt sicher, dass die letzte Seite ausgegeben ist, bevor die Gruppe endet.
+%Diese L"osung funktioniert m"oglicherweise nicht mit k"unftigen Versionen von KOMA-Script!
+%http://groups.google.de/group/de.comp.text.tex/browse_thread/thread/a4cd123873925372/eeebf6ccf4cfac04?hl=de#eeebf6ccf4cfac04
+\clearpage
+
+%Ende des Teils mit normalem Seitenrand
+\endgroup
+
+% Formatierung für den Inhalt
+\input{./preamble/format.tex}
+
+%-------------
+% Hauptteil
+%-------------
+\toc{Zul"assigkeit}
+Die \randnummer{Verfassungsbeschwerde} m"usste zul"assig sein.\footnote{Wer das liest, ist doof; vgl. \cite{Musielak.2009}.} Die Verfassungsbeschwerde ist
+zul"assig, wenn ein zul"assiges Verfahren vor dem BVerfGE einschl"agig ist, der Beschwerdef"uhrer parteif"ahig ist...
+
+\begin{schema}{Inhomogeneous linear}
+\blindtext
+\end{schema}
+
+
+\sub{Verfahren}
+\randnummer{3} \blindtext
+
+\toc{Beschwerdef"ahigkeit}
+\blindtext 
+
+\blindtext
+
+\toc{Prozessf"ahigkeit}
+\blindtext
+
+\toc{Postulationsf"ahigkeit}
+\blindtext
+
+\toc{Beschwerdegegenstand}
+\blindtext
+
+\toc{Beschwerdebefugnis}
+\blindtext
+
+\toc{Rechtsschutzbed"urfnis}
+\blindtext
+
+\blindtext
+
+\blindtext
+
+\toc{Frist und Form}
+\blindtext
+
+\toc{Ergebnis}
+\blindtext
+
+\levelup
+\toc{Begründetheit}
+\blindtext
+
+\sub{Verstoß gegen Art. 12 GG}
+\blindtext
+
+\toc{Verstoß gegen Art. 5 I GG (Meinungsfreiheit)}
+\blindtext
+
+\toc{Verstoß gegen Art. 5 I GG (Pressefreiheit)}
+\blindtext
+\blindtext
+\blindtext
+
+\toc{Verstoß gegen Art. 5 III GG (Kunstfreiheit)}
+\blindtext
+
+\sub{test1}
+\blindtext
+
+\sub{test2}
+\blindtext bla\footnote{fhdlsafj} 
+
+\sub{test3}
+\blindtext
+
+\sub{test4}
+\blindtext 
+
+\sub{test5}
+\blindtext 
+
+\sub{test6}
+\blindtext 
+
+\sub{test7}
+\blindtext
+
+\sub{test8}
+\blindtext
+
+\sub{test9}
+\blindtext
+
+\sub{test}
+\blindtext
+
+\include{./appendix/appendix} % Anhänge
+\end{document}
+ 
