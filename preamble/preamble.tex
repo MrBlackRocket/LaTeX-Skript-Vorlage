@@ -3,11 +3,14 @@
 %----------------------------------
 
 %========
-% Schrift & Sprache (die Art der Schrift wird in ./script.tex ausgewählt)
+% Schrift & Sprache
 % Schriftsatz utf8 und Deutsch
 \usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden 
 \usepackage[T1]{fontenc} % T1-Fonts
 \usepackage[ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung (neue Rechtschreibung)
+
+% Schriftart (sie wird via Schalter ausgewählt)
+\input{./preamble/fonts.tex}
 
 % diverse Symbole
 \usepackage{marvosym} 
@@ -172,8 +175,6 @@
 % durch die boxes.tex werden verschiedene Boxen bereit gestellt
 \input{./preamble/boxes.tex}
 
-% Auch die "Uberschriften in Times Roman
-\setkomafont{sectioning}{\rmfamily\bfseries\normalsize} 
 
 % Abstand zwischen chapter und Kopf um 1cm verkleinern
 \renewcommand*\chapterheadstartvskip{\vspace*{-1cm}} 
