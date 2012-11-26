@@ -46,10 +46,15 @@
 \renewcommand{\p@randnr}{\@rdnrname}%Bei Verweisen Rdnr. vor Zahl ausgegeben
 \renewcommand{\p@zwrandnr}{\@rdnrname}%Bei Verweisen Rdnr. vor Zahl\,Buchstabe ausgegeben
 
+% marginpar Config
+\setlength{\marginparwidth}{15mm}
+\marginparsep5mm
+\normalmarginpar
+
 %Z"ahler "uber Makro erh"ohen und am Rand als Randnummer ausgeben
 %Kann einfach am Anfang oder vor dem zu beziffernden Absatz, vor allem aber vor eventuellen \label-Befehlen als
 %\randnummer{} eingef"ugt werden. Allerdings muss es nach Abschnittsbefehlen (wie \section) eingef"ugt werden.
-\newcommand{\randnummer}{\newrandnummer\marginpar{\strut\\\centering\textbf{\therandnr}}}
+\newcommand{\randnummer}{\newrandnummer\marginpar{\vspace{-30pt}{\strut\\\centering\textbf{\therandnr}}}}
 
 %Dieses Makro ist f"ur Zwischenrandnummern gedacht, also nachtr"aglich eingef"ugten, etwa 36a, 36b etc. Die Benutzung
 %ist ansonsten die gleiche.
