@@ -1,0 +1,88 @@
+% ========
+% Makro für Tabellen aus dem Quellcode des freiesMagazin (http://www.freiesmagazin.de/)
+\newcommand{\PDFonly}[1]{#1}
+% Vor einem Abstand die Zeile strecken.
+\newboolean{AbstandSoftLineBreak}
+
+% Vor einem Abstand die Zeile nicht hart umbrechen.
+\newboolean{AbstandHardLineBreak}
+
+% Nach einem Abstand die Spalte beenden.
+\newboolean{AbstandColumnBreak}
+
+% Setzen der Abstand-Standardwerte
+\newcommand*{\SetDefaultAbstandKeys}
+{%
+    \setboolean{AbstandSoftLineBreak}{false}%
+    \setboolean{AbstandHardLineBreak}{false}%
+    \setboolean{AbstandColumnBreak}{false}%
+}
+
+% Abstand im Text, der einen kompletten Bereich frei lässt.
+% Benutzung: \Abstand[OPTIONEN]{HOEHE}
+% Beispiel: \Abstand{0.7em} oder \Abstand[stretch]{7.1em}
+% Optionen:
+%   stretch - Fügt vor dem Abstand einen sanften Zeilenumbruch ein,
+%             sodass eine Zeile bis zum Spaltenende gestreckt wird.
+%   linebreak - Fügt einen harten Zeilenumbruch ein.
+%   break - Beendet nach dem Abstand die Spalte.
+\newcommand*{\Abstand}[2][]
+{%
+    \PDFonly{%
+        \SetDefaultAbstandKeys{}%
+        \setkeys{Abstand}{#1}%
+        \ifthenelse{\boolean{AbstandSoftLineBreak}}{\sbreak}{}%
+        \ifthenelse{\boolean{AbstandHardLineBreak}}{\\}{}%
+        \vspace*{#2}%
+        \ifthenelse{\boolean{AbstandColumnBreak}}{\cbr
+
+        }{\par{}}%
+    }%
+}
+
+% Abstand hinter einer Tabelle
+\newlength{\TabellenVSkip}
+% Setzen der Tabellen-Standardwerte
+\newcommand*{\SetDefaultTabellenKeys}[1]
+{%
+    \setlength{\TabellenVSkip}{0em}%
+}
+
+% Makro für Dateien, Ordner, Verzeichnisse, Befehle, Optionen etc. im Terminal
+\newcommand*{\term}[1]{\textbf{\texttt{#1}}}
+\newcommand*{\termZ}[2]{\textbf{\texttt{#1}} \textbf{\texttt{#2}}}
+\newcommand*{\termD}[3]{\textbf{\texttt{#1}} \textbf{\texttt{#2}} \textbf{\texttt{#3}}}
+
+% Makro für Tabellen aus dem Quellcode des freiesMagazin (http://www.freiesmagazin.de/)
+% Benutzung: \begin[OPTIONEN]{Tabelle}{SPALTENANZAHL}{SPALTENDEFINITION}{UEBERSCHRIFT} ... \end{Tabelle}
+% Beispiel: \begin[OPTIONEN]{Tabelle}{3}{|p{1cm}cc|}{Tabelle 1} erzeugt eine dreispaltige Tabelle, wobei die erste Spalte 1 cm und linksbündig ist, die anderen beiden zentriert
+
+\makeatletter
+% Abstand hinter einer Tabelle
+\define@key{Tabelle}{vskip}{\setlength{\TabellenVSkip}{#1}}
+\makeatother
+\newenvironment{Tabelle}[4][]
+{%
+    \SetDefaultTabellenKeys{}%
+    \setkeys{Tabelle}{#1}%
+    \begin{minipage}{\linewidth}%
+        \centering{}%
+        \begin{footnotesize}%
+            \renewcommand{\arraystretch}{1.2}% erhöht den Zeilenabstand für Ueberschrift
+            \setlength{\arrayrulewidth}{2pt}%
+            \rowcolors{1}{mittelgrau}{white}% alternierende Farben
+            \arrayrulecolor{darkgrey}%
+            \begin{tabular}{#3}
+                \firsthline
+                \multicolumn{#2}{|>{\columncolor{darkgrey}}c|}%
+                {\normalsize \textcolor{white}{\textbf{#4}}}\\
+}
+{%
+                \lasthline
+            \end{tabular}%
+            \rowcolors{1}{white}{white}%
+            \renewcommand{\arraystretch}{1}%
+        \end{footnotesize}%
+    \end{minipage}%
+    \Abstand{\TabellenVSkip}
+}
