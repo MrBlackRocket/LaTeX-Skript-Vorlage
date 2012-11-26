@@ -2,9 +2,6 @@
 % laden der Verschiedenen Pakete
 %----------------------------------
 
-% Grafikpaket
-\usepackage{graphicx}
-
 %========
 % Schrift & Sprache (die Art der Schrift wird in ./script.tex ausgewählt)
 % Schriftsatz utf8 und Deutsch
@@ -39,6 +36,11 @@
 % für Zeilenabstand
 \usepackage{setspace}
 
+% Berechnen von Längen und Werten
+\usepackage{calc}
+
+%\usepackage{microtype}
+
 % Paket scrpage2 aus dem KOMA-Script-Paket ist für Kopf- und Fußzeilen zuständig.
 \usepackage{scrpage2}
 
@@ -53,8 +55,14 @@
 % erlaubt Farbige Zellen
 \usepackage{colortbl}
 
+% alternierende farbige Tabellenzeilen
+\usepackage[table]{xcolor}
+
 % Gestaltung der horizontalen Linien innerhalb einer Tabelle
 \usepackage{booktabs}
+
+% wird von colortbl benötigt
+\usepackage{array}
 
 %========
 % JURA spezifische Pakete
@@ -70,6 +78,9 @@
 
 %========
 % andere Pakete
+
+% Grafikpaket
+\usepackage{graphicx}
 
 % für hervor gehobene Boxen
 \usepackage{tikz}
@@ -137,12 +148,12 @@
 % Layout
 % Optionen für das geometry-Paket. 
 % Rand links 2,5cm, rechts 2,5cm, oben 3cm, unten 3cm.
-\geometry{lmargin=2.5cm,rmargin=2.5cm,tmargin=3cm,bmargin=3cm,headheight=0ex}
+\geometry{lmargin=25mm,rmargin=2.5cm,tmargin=30mm,bmargin=30mm,headheight=0ex}
 
 % Hurenkinder und Schusterjungen/Waisenkinder unterdrücken
-\clubpenalty = 10000 
-\widowpenalty = 10000 
-\displaywidowpenalty = 10000
+\clubpenalty = 1000
+\widowpenalty = 1000
+\displaywidowpenalty = 1000
 
 \pagestyle{scrplain}
 
@@ -164,8 +175,14 @@
 % Auch die "Uberschriften in Times Roman
 \setkomafont{sectioning}{\rmfamily\bfseries\normalsize} 
 
-% neuer Tabellenspaltentyp C (X zentriert)
-\newcolumntype{C}{>{\centering\arraybackslash}X}
+% Abstand zwischen chapter und Kopf um 1cm verkleinern
+\renewcommand*\chapterheadstartvskip{\vspace*{-1cm}} 
+
+% neuer Tabellenspaltentyp D (X zentriert)
+\newcolumntype{D}{>{\centering\arraybackslash}X}
+
+% neuer Spaltentyp für Tabellen
+\newcolumntype{C}[1]{>{\centering}p{#1}}
 
 % für lange Zitate
 \newenvironment{bquote}% 
@@ -182,11 +199,32 @@
 % \part angepasst
 \titleformat{\part}[display]{\normalfont\bfseries\LARGE\filcenter}{}{.5em}{}
 
-                                
+% durch die table.tex wird eine Tabelle
+\input{./preamble/table.tex}
+
 %fuer URL (nur wenn url geladen ist)
 \IfDefined{urlstyle}{
 	\urlstyle{tt} % URLs in Typewriter
 }
+
+% Makro für Auflistungen
+% Benutzung: \begin{Auflistung}
+% \item Item 1
+% \item Item 2
+% \end{Auflistung}
+\newenvironment{Auflistung}
+{\begin{itemize}[parsep=0.2em,leftmargin=*]}
+{\end{itemize}}
+
+% Makro für Aufzählungen
+% Benutzung:
+% \begin{Aufzaehlung}
+% \item Item 1
+% \item Item 2
+% \end{Aufzaehlung}
+\newenvironment{Aufzaehlung}
+{\begin{enumerate}[parsep=0.2em,leftmargin=*]}
+{\end{enumerate}}
 
 % ========
 % Farben 
@@ -201,6 +239,13 @@
 \definecolor{darkgrey}{RGB}{64,64,64}		 % grey97
 \definecolor{blau1}{RGB}{135,206,250}		 % Helles Blau
 \definecolor{blau2}{rgb}{0.1,0.1,0.25}		 % Dunkleres Blau (alt: 0.5)
+\definecolor{orange}{rgb}{1,0.39,0.04}
+\definecolor{hellgelb}{rgb}{1.0,1.0,0.9}
+\definecolor{hellblau}{rgb}{0.85,0.95,1.0}
+\definecolor{dunkelgrau}{gray}{0.35}
+\definecolor{mittelgrau}{gray}{0.85}
+\definecolor{hellgrau}{gray}{0.93}
+\definecolor{link}{rgb}{0.7,0.28,0.0}
 %
 % Farbe fuer grau hinterlegte Boxen (fuer Paket framed.sty)
 \definecolor{shadecolor}{gray}{0.90}
@@ -268,6 +313,9 @@
 
 % Abstand Text <-> Fussnote
 \addtolength{\skip\footins}{\baselineskip}
+
+% Verhindert das Fortsetzen von Fussnoten auf der gegenüberligenden Seite
+\interfootnotelinepenalty=10000 
 
 
 % ========

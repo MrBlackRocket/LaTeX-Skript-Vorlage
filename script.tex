@@ -1,8 +1,8 @@
 % scrreprt-Klasse
-\documentclass[oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false]{scrreprt}
+\documentclass[oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false,parskip=full-]{scrreprt}
 
-% Schaltet auf eine großzügige Formatierungsweise um, die relativ wenige Worttrennungen am Zeilenende erzeugt, dafür aber auch etwas größere Wortabstände innerhalb der Zeilen zuläßt.
-%\sloppy
+%\sloppy % weniger Worttrennungen, größere Wortabstände
+\fussy % viele Worttrennungen, "schönere" Wortabstände
 
 % Schriftauswahl
 \input{./preamble/fonts/droid.tex}
@@ -17,8 +17,12 @@
 % Titelseite, Inhaltsverzeichnis
 \input{./content/intro.tex}
 
-% Formatierung für den Inhalt
-\input{./preamble/format.tex}
+% Seitenzahlen Arabisch und neu Beginnen
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Anderthalbfacher Zeilenabstand
+\onehalfspacing
 
 %-------------
 % Hauptteil
