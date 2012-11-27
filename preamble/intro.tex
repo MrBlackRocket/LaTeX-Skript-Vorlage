@@ -1,0 +1,55 @@
+\begingroup
+	%Titelseite setzen
+	\begin{titlepage}
+		\begin{center}
+			\makeatletter
+				\includegraphics[width=3cm]{\@logo}\\[6cm]
+				\textbf{{\LARGE Script}\\[0.5cm]}
+			\makeatother
+			{\bfseries
+				\makeatletter
+					\Huge\@title
+				\makeatother
+			}\\[3cm]
+			\makeatletter
+				\noindent\textbf{{\large \@author}}\\[16pt]
+				{\normalsize \@ort, \today}
+			\makeatother
+		\end{center}
+		\vspace*{\fill} 
+		\begin{minipage}[b]{8cm}
+			\begin{flushleft}
+				\makeatletter
+					\@lizenz
+				\makeatother
+			\end{flushleft}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{8cm} 
+			\begin{flushright}
+				\makeatletter
+					\@kontakt
+				\makeatother
+			\end{flushright}
+		\end{minipage}
+	\end{titlepage}
+\endgroup
+%Römische Ziffern (groß) zur Nummerierung des Vorspanns
+\pagenumbering{Roman}
+\clearpage\setcounter{page}{1}
+% Vorwort oder der gleichen
+
+\input{./content/prolog}
+
+\clearpage
+
+% Inhaltsverzeichnis (Gliederung) mit einer tiefe von 3 erstellen
+\setcounter{tocdepth}{3}
+\tableofcontents
+\clearpage
+
+% Literaturverzeichnis jurlit.bib
+\nocite{*} % alle Eintrge in der Bib anzeigen
+\bibliography{script}
+\bibliographystyle{jurabib}
+\clearpage
