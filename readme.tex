@@ -1,11 +1,15 @@
 % scrreprt-Klasse
-\setcounter{errorcontextlines}{999}
-\documentclass[oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false]{scrreprt}
+%\setcounter{errorcontextlines}{999}
+\documentclass[oneside,headings=small,headsepline,12pt,a4paper,numbers=noenddot,chapterprefix=false,parskip=full-]{scrreprt}
+
+%\sloppy % weniger Worttrennungen, größere Wortabstände
+\fussy % viele Worttrennungen, "schönere" Wortabstände
 
 % Kopfbereiches
 \input{./preamble/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
-\input{./preamble/fonts/droid.tex}
 \input{./preamble/preamble.tex}
+
+\Schrift{droid}
 
 \usepackage{showexpl}
 \lstset{%
@@ -29,6 +33,7 @@
 }
 \usepackage{listings}
 \usepackage{blindtext}
+\usepackage{dirtree}
 \newcommand{\cmd}[1]{\textcolor{darkgrey}{{\small\texttt{{#1}}}}}
 
 \begin{document}
@@ -74,27 +79,25 @@
 \end{center}
 \end{titlepage}
 
-\chapter*{Vorwort}
 % Zeilenabstand innerhalb der itemize- und enumerate-Umgebungen auf Null setzen
-\setlist{noitemsep}
+
+\chapter*{Vorwort}
+
 Als ich 2009 meinen Informatikstudium begonnen habe, begann ich auch meine Dokumente mit Hilfe von \LaTeX zuschreiben. Im Informatikbereich ist es auch kein Problem da es sehr viele Lösungen gibt. Aber als ich ein Jahr später in das Rechtsstudium gewechselt bin\footnote{Informatik hat mich nicht gefordert und ist Inhaltlich der Zeit um 1 Jahrzehnt hinterher.}, sah die Sache etwas anderes aus. Es gab bzw. gibt für die Jurisprudenz an und für sich keine vollständigen Lösungen\footnote{Word \& Co. sind juristischen Bereich so etwas wie ein quasi Standard.}, allerdings es gibt sehr gut Ansätze und Ideen.
-\\
 
 Also musste eine eigene Lösung her und hier ist sie, die \cmd{Script Vorlage}, inzwischen in Version 2.0 vorliegend. In dieser Vorlage kommen auch Lösungen zum Einsatz welche nicht von mir sind, an den entsprechenden Stellen im \LaTeX-Code sind die Urheber angegeben.
-\\
 
 Nun zu diesen Dokument. Dieses Dokument ist eine Mischung aus Anleitung und Demonstration der einzelnen Funktionen, welches jedoch keinen Anspruch auf Vollständigkeit erhebt. Für weitergehende Informationen empfehle ich.
-\begin{itemize}
+\begin{Auflistung}
 	\item \href{http://www.linupedia.org/opensuse/LaTeX}{LaTeX WIKI B U C H}
 	\item \href{http://projekte.dante.de/DanteFAQ/WebHome}{Deutsche TeX-FAQ}
 	\item \href{http://de.wikibooks.org/wiki/LaTeX-Kompendium}{LaTeX-Kompendium}
 	\item \href{http://golatex.de/}{goLaTeX - Mein LaTeX-Forum}
 	\item \href{http://mrunix.de/forums/forumdisplay.php?f=38}{LaTeX-Forum LaTeX, LyX, BibteX, PDF \& Co}
 	\item \href{http://www.weinelt.de/latex/index.html}{LaTeX-Befehlsreferenz}
-\end{itemize}
+\end{Auflistung}
 
-PS: Die aktuellste Version findet ihr immer in meinen \href{https://github.com/BlackRocket/LaTeX-Script-Vorlage}{Git Repo} und wenn ihr über Fehler stolpert, meldet sie bitte unter \href{http://bugs.brcs.eu/index.php?project=2}{bugs.brcs.eu}.  
-\\
+PS: Die aktuellste Version findet ihr immer in meinen \href{https://github.com/BlackRocket/LaTeX-Script-Vorlage}{Git Repo} und wenn ihr über Fehler stolpert, meldet sie bitte unter \href{http://bugs.brcs.eu/index.php?project=2}{bugs.brcs.eu}.
 
 PPS: Falls ihr mir etwas gutes tun wollt, so findet ihr meine Wunschliste unter \href{http://wishlist.brcs.eu}{wishlist.brcs.eu}
 \clearpage
@@ -108,9 +111,7 @@ PPS: Falls ihr mir etwas gutes tun wollt, so findet ihr meine Wunschliste unter 
 \nocite{*} % alle Einträge in der Bib anzeigen
 \bibliography{script}
 \bibliographystyle{jurabib}
-Gebraucht werden die üblichen Abkürzungen, vgl. Kirchner,
-Hildebert/Butz, Cornelie: Abkürzungsverzeichnis der Rechtssprache, 5.
-Aufl., Berlin/New York 2003
+Gebraucht werden die üblichen Abkürzungen, vgl. Kirchner, Hildebert/Butz, Cornelie: Abkürzungsverzeichnis der Rechtssprache, 5. Aufl., Berlin/New York 2003
 
 %Stellt sicher, dass die letzte Seite ausgegeben ist, bevor die Gruppe endet.
 %Diese L"osung funktioniert m"oglicherweise nicht mit k"unftigen Versionen von KOMA-Script!
@@ -120,102 +121,78 @@ Aufl., Berlin/New York 2003
 %Ende des Teils mit normalem Seitenrand
 \endgroup
 
-% Formatierung für den Inhalt
-\input{./preamble/format.tex}
+% Seitenzahlen Arabisch und neu Beginnen
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
-%-------------
-% Hauptteil
-%-------------
-\toc{Zul"assigkeit}
-Die \randnummer{Verfassungsbeschwerde} m"usste zul"assig sein.\footnote{Wer das liest, ist doof; vgl. \cite{Musielak.2009}.} Die Verfassungsbeschwerde ist
-zul"assig, wenn ein zul"assiges Verfahren vor dem BVerfGE einschl"agig ist, der Beschwerdef"uhrer parteif"ahig ist...
+% Anderthalbfacher Zeilenabstand
+\onehalfspacing
 
-\begin{schema}{Inhomogeneous linear}
-\blindtext
-\end{schema}
+%-----------------
+% Begin Hauptteil
+%-----------------
+\toc{Aufbau}
+Die Verzeichnisstruktur ist wie folgt aufgebaut.\par\bigskip
+\dirtree{%
+.1 LaTeX-Script-Vorlage.
+.2 readme.pdf.
+.2 readme.tex.
+.2 script.bib.
+.2 script.pdf.
+.2 script.tex.
+.2 license.md.
+.2 appendix.
+.3 appendix.tex.
+.2 content.
+.3 intro.tex.
+.3 part01.tex.
+.2 graphics.
+.2 preamble.
+.3 preambelcommands.tex.
+.3 preamble.tex.
+.3 jura.tex.
+.3 boxes.tex.
+.3 format.tex.
+.3 fonts.
+.4 default.tex.
+.4 droid.tex.
+}
+\sub{Ordner}
+Die Vorgegebene Ordnerstruktur ist nur ein Vorschlag, du kannst sie nach belieben ändern, wenn du die Pfadangaben in den \TeX-Dateien anpasst.
+\par\bigskip
 
+\begin{Tabelle}[vskip=1em]{2}{|p{.35\linewidth}p{.55\linewidth}|}{Optionsübersicht}
+\textbf{Ordnername} & \textbf{Funktion} \\
+\textbf{appendix} & die Anhänge (auch Grafiken) \\
+\textbf{content} & die Inahlte \\
+\textbf{graphics} & eventuell eingebundene Grafiken  \\
+\textbf{preamble} & Konfigurationsdateien \\
+\end{Tabelle}
 
-\sub{Verfahren}
-\randnummer{3} \blindtext
+\toc{Dateien}
+\sub{script.tex}
+Die \cmd{script.tex} ist der Dreh- und Angelpunkt der Vorlage, hier werden alle anderen Dateien eingebunden.
+\par\bigskip
+\begin{lstlisting}
+% Schriftauswahl
+\input{./preamble/fonts/droid.tex}
+%\input{./preamble/fonts/default.tex}
+test
+test
+test
+test
+test
+test
+test
+test
+test
+\end{lstlisting}
 
-\toc{Beschwerdef"ahigkeit}
-\blindtext 
+%-----------------
+% Ende Hauptteil
+%-----------------
 
-\blindtext
-
-\toc{Prozessf"ahigkeit}
-\blindtext
-
-\toc{Postulationsf"ahigkeit}
-\blindtext
-
-\toc{Beschwerdegegenstand}
-\blindtext
-
-\toc{Beschwerdebefugnis}
-\blindtext
-
-\toc{Rechtsschutzbed"urfnis}
-\blindtext
-
-\blindtext
-
-\blindtext
-
-\toc{Frist und Form}
-\blindtext
-
-\toc{Ergebnis}
-\blindtext
-
-\levelup
-\toc{Begründetheit}
-\blindtext
-
-\sub{Verstoß gegen Art. 12 GG}
-\blindtext
-
-\toc{Verstoß gegen Art. 5 I GG (Meinungsfreiheit)}
-\blindtext
-
-\toc{Verstoß gegen Art. 5 I GG (Pressefreiheit)}
-\blindtext
-\blindtext
-\blindtext
-
-\toc{Verstoß gegen Art. 5 III GG (Kunstfreiheit)}
-\blindtext
-
-\sub{test1}
-\blindtext
-
-\sub{test2}
-\blindtext bla\footnote{fhdlsafj} 
-
-\sub{test3}
-\blindtext
-
-\sub{test4}
-\blindtext 
-
-\sub{test5}
-\blindtext 
-
-\sub{test6}
-\blindtext 
-
-\sub{test7}
-\blindtext
-
-\sub{test8}
-\blindtext
-
-\sub{test9}
-\blindtext
-
-\sub{test}
-\blindtext
-
+% Einbindung der Anhänge
 \include{./appendix/appendix} % Anhänge
 \end{document}
  

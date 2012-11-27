@@ -1,0 +1,17 @@
+\newcommand{\Schrift}[1]
+{
+  \ifthenelse{\equal{#1}{droid}}{
+  	\usepackage[default]{droidserif}
+  	\usepackage[scale=.95]{droidsans}
+  	\usepackage[defaultmono]{droidmono}
+  	\renewcommand{\ttfamily}{\fdmfamily}
+  	\addtokomafont{disposition}{\fdsfamily}
+  	\setkomafont{sectioning}{\fdrfamily\bfseries\normalsize} 
+  }{}
+  \ifthenelse{\equal{#1}{times}}{
+  	\usepackage{mathptmx}
+  	\usepackage[scaled=.95]{helvet} 
+  	\usepackage{courier} 
+  	\setkomafont{sectioning}{\rmfamily\bfseries\normalsize} 
+  }{}
+}
