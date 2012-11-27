@@ -1,6 +1,10 @@
 %----------------------------------
 % laden der Verschiedenen Pakete
 %----------------------------------
+<<<<<<< HEAD
+=======
+\input{./preamble/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
+>>>>>>> 2.1
 
 %========
 % Schrift & Sprache
@@ -107,41 +111,47 @@
 %----------------------------------
 
 
-\usepackage[
-   % Farben fuer die Links
-   colorlinks=true,         % Links erhalten Farben statt Kaeten
-   urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
-   filecolor=pdffilecolor,  % \href{...} local file
-   linkcolor=pdflinkcolor,  % \ref{...} and \pageref{...}
-   citecolor=black,
-   menucolor=black,
-   % Links
-   raiselinks=true,			% calculate real height of the link
-   backref=false,           % Backlinks im Literaturverzeichnis (section, slide, page, none)
-   pagebackref=false,       % Backlinks im Literaturverzeichnis mit Seitenangabe
-   verbose,
-   hyperindex=true,         % backlinkex index
-   linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
-   hyperfootnotes=true,     % Keine Links auf Fussnoten
-   % Bookmarks
-   bookmarks=false,         % Erzeugung von Bookmarks fuer PDF-Viewer, deaktiviert da Bug von alphanum Probleme verursacht und die Lösung noch nicht wirklich funktioniert
-   bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
-   bookmarksopen=true,      % Expandierte Untermenues in Bookmarks
-   bookmarksnumbered=true,  % Nummerierung der Bookmarks
-   bookmarkstype=toc,       % Art der Verzeichnisses
-   bookmarksdepth=3,
-   % Anchors
-   plainpages=false,        % Anchors even on plain pages ?
-   pageanchor=true,         % Pages are linkable
-   % PDF Informationen
-   pdftitle={},             % Titel
-   pdfauthor={},            % Autor
-   pdfcreator={LaTeX, hyperref, KOMA-Script}, % Ersteller
-   %pdfproducer={pdfeTeX 1.10b-2.1} %Produzent
-   pdfstartview=FitH,       % Dokument wird Fit Width geaefnet
-   pdfpagemode=UseOutlines, % Bookmarks im Viewer anzeigen
-   pdfpagelabels=true,      % set PDF page labels
+\usepackage[% Farben fuer die Links
+       colorlinks=true,         % Links erhalten Farben statt Kaeten
+       urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
+       filecolor=pdffilecolor,  % \href{...} local file
+       linkcolor=pdflinkcolor,  % \ref{...} and \pageref{...}
+       citecolor=black,
+       menucolor=black,
+       % Links
+       raiselinks=true,			% calculate real height of the link
+       backref=false,           % Backlinks im Literaturverzeichnis (section, slide, page, none)
+       pagebackref=false,       % Backlinks im Literaturverzeichnis mit Seitenangabe
+       verbose,
+       hyperindex=true,         % backlinkex index
+       linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
+       hyperfootnotes=true,     % Keine Links auf Fussnoten
+       % Bookmarks
+       bookmarks=false,         % Erzeugung von Bookmarks fuer PDF-Viewer, deaktiviert da Bug von alphanum Probleme verursacht und die Lösung noch nicht wirklich funktioniert
+       bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
+       bookmarksopen=true,      % Expandierte Untermenues in Bookmarks
+       bookmarksnumbered=true,  % Nummerierung der Bookmarks
+       bookmarkstype=toc,       % Art der Verzeichnisses
+       bookmarksdepth=3,
+       % Anchors
+       plainpages=false,        % Anchors even on plain pages ?
+       pageanchor=true,         % Pages are linkable
+       pdfstartview=FitH,       % Dokument wird Fit Width geaefnet
+       pdfpagemode=UseOutlines, % Bookmarks im Viewer anzeigen
+       pdfpagelabels=true,      % set PDF page labels
 ]{hyperref}
+
+% PDF Informationen
+\makeatletter
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={\@subject},
+    pdfkeywords={\@kwords}
+  }
+}
+\makeatother
 
 % URL Paket (darf erst nach hyperref geladen werden
 \usepackage{url} 
@@ -163,10 +173,10 @@
 \pagestyle{scrplain}
 
 % Die Kopfzeile innen/links (\ihead) und in der Mitte (\chead) leer lassen, außen/rechts (\ohead) die Seitennummer
-\ihead[]{} \chead[]{} \ohead[\thepage]{\thepage}
+\ihead[]{} \chead[]{} \ohead[]{}
 
 % Die Fußzeile leer lassen.
-\ifoot{} \cfoot[]{} \ofoot{}
+\ifoot{} \cfoot[\thepage]{\thepage} \ofoot{}
 
 % Absätze nicht einrücken
 \setlength{\parindent}{0pt}
@@ -206,10 +216,31 @@
 % durch die table.tex wird eine Tabelle
 \input{./preamble/table.tex}
 
+<<<<<<< HEAD
 %fuer URL (nur wenn url geladen ist)
 \IfDefined{urlstyle}{
 	\urlstyle{tt} % URLs in Typewriter
 }
+=======
+% Makro für Auflistungen
+% Benutzung: \begin{Auflistung}
+% \item Item 1
+% \item Item 2
+% \end{Auflistung}
+\newenvironment{Auflistung}
+{\begin{itemize}[parsep=0.2em,leftmargin=*]}
+{\end{itemize}}
+
+% Makro für Aufzählungen
+% Benutzung:
+% \begin{Aufzaehlung}
+% \item Item 1
+% \item Item 2
+% \end{Aufzaehlung}
+\newenvironment{Aufzaehlung}
+{\begin{enumerate}[parsep=0.2em,leftmargin=*]}
+{\end{enumerate}}
+>>>>>>> 2.1
 
 % Makro für Auflistungen
 % Benutzung: \begin{Auflistung}

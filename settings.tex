@@ -1,0 +1,54 @@
+% Schriftauswahl als Standard ist die Droid Familie gewählt
+% alternativ kann aber das Times/Helvetica/Courier Dreigespann
+% verwendet werden, dafür muss 'droid' durch 'times' ersetzt
+% werden. Also statt \Schrift{droid}, \Schrift{times},
+% Bei Auswahl der Droid Schrift muss diese auch installiert 
+% sein (http://www.ctan.org/tex-archive/fonts/droid/)
+\Schrift{droid}
+
+% Titel des Scripts
+\title{Öffentlichen Recht III}
+
+% Einstellung des Logos
+% Wenn kein Logo verwendet werden soll, dann muss
+% './graphics/unilogo.png' durch './graphics/das-nichts.png'
+% ersetzt werden.
+\makeatletter
+	\newcommand*\@logo{./graphics/unilogo.png}
+\makeatother
+
+% Ersteller/Autor des Scripts
+\author{Max Musterman}
+
+% Erstellungsort
+\makeatletter
+	\newcommand*\@ort{Musterstadt}
+\makeatother
+
+% eine kurze Beschreibung des Scriptes
+\subject{Mitschrift aus Vorlasung XY}
+
+% Schlüsselwörter
+\makeatletter
+	\newcommand*\@kwords{LaTeX, Vorlage, Script, CC-BY-SA 3.0}
+\makeatother
+
+% Anschrift
+\makeatletter
+	\newcommand*\@kontakt{
+		Max Musterman\\ 
+		Musterstraße 42\\ 
+		31415 Musterstadt\\ \href{mailto:my_address@Domain.de}{\nolinkurl{my_address@Domain.de}}\\ \href{http://www.Domain.de}{www.Domain.de}
+	}
+\makeatother
+
+% Lizenz
+% Als Standard wird die CC-BY-SA 3.0 Lizenz angezeigt, bei einer
+% anderen Lizenzwahl das Logo und des Link ersetzen. Soll keine
+% Lizenz angezeigt werden, so muss die Zeile mit des '\href' mit
+% einem '%'-Zeichen auskommentiert werden. 
+\makeatletter
+	\newcommand*\@lizenz{
+		\href{http://creativecommons.org/licenses/by-sa/3.0/deed.de}{\includegraphics[width=1in]{./graphics/by-sa.png}}
+	}
+\makeatother
