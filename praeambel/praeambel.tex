@@ -1,7 +1,7 @@
 %----------------------------------
 % laden der Verschiedenen Pakete
 %----------------------------------
-\input{./preamble/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
+\input{./praeambel/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
 
 %========
 % Schrift & Sprache
@@ -10,8 +10,8 @@
 \usepackage[T1]{fontenc} % T1-Fonts
 \usepackage[ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung (neue Rechtschreibung)
 
-% Schriftart (sie wird via Schalter ausgewählt)
-\input{./preamble/fonts.tex}
+% Schriftart
+\input{./praeambel/schriften.tex}
 
 % diverse Symbole
 \usepackage{marvosym} 
@@ -44,7 +44,7 @@
 % Berechnen von Längen und Werten
 \usepackage{calc}
 
-%\usepackage{microtype}
+\usepackage{microtype}
 
 % Paket scrpage2 aus dem KOMA-Script-Paket ist für Kopf- und Fußzeilen zuständig.
 \usepackage{scrpage2}
@@ -182,7 +182,7 @@
 \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
 
 % durch die boxes.tex werden verschiedene Boxen bereit gestellt
-\input{./preamble/boxes.tex}
+\input{./praeambel/boxen.tex}
 
 
 % Abstand vor und nach chapter verkleinern
@@ -211,7 +211,7 @@
 \titleformat{\part}[display]{\normalfont\bfseries\LARGE\filcenter}{}{.5em}{}
 
 % durch die table.tex wird eine Tabelle
-\input{./preamble/table.tex}
+\input{./praeambel/tabelle.tex}
 
 % Makro für Auflistungen
 % Benutzung: \begin{Auflistung}
@@ -318,13 +318,12 @@
 % ========
 % ANDERES
 % durch die jura.tex werden verschiedene spezielle Jura Funktionen bereit gestellt
-\input{./preamble/jura.tex}
+\input{./praeambel/jura.tex}
 
 % Hinweis und Warnung
 \newcommand*{\Hinweis}[1]{\textbf{Hinweis:} #1}
 \newcommand*{\Warnung}[1]{\textbf{Warnung:} #1}
 \newcommand*{\Achtung}[1]{\textbf{Achtung:} #1}
-\newcommand*{\RedHinweis}[1]{\textbf{Redaktioneller Hinweis:} \textit{#1}}
 
 % Bugfix für alphanum i.V.m. hyperref bookmarks=true
 % Leider noch nicht funktionstüchtig

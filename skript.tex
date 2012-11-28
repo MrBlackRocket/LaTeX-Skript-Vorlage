@@ -2,14 +2,14 @@
 \documentclass[oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false,parskip=full-]{scrreprt}
 
 % Preamble einbinden
-\input{./preamble/preamble.tex}
+\input{./praeambel/praeambel.tex}
 
-\input{./settings.tex}
+\input{./einstellungen.tex}
 
 \begin{document}
 
 % Titelseite, Inhaltsverzeichnis
-\input{./preamble/intro.tex}
+\input{./praeambel/titel.tex}
 
 % Seitenzahlen Arabisch und neu Beginnen
 \pagenumbering{arabic}
@@ -21,7 +21,7 @@
 %-------------
 % Hauptteil
 %-------------
-\include{./content/part01}
+\include{./inhalt/kapitel01}
 
 
 %-----------------
@@ -33,12 +33,12 @@
 \part*{Anhänge}
 
 % Seitenzahlen Römisch und bei 4 Beginnen
-\pagenumbering{Roman}\setcounter{page}{4}
+\pagenumbering{Alph}\setcounter{page}{1}
 
 %-------------
 % Anhänge
 %-------------
-\include{./appendix/appendix01}
+\include{./anhaenge/anhang01}
 
 %-----------------
 % Ende Anhänge
