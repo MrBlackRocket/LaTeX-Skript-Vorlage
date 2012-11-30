@@ -44,6 +44,7 @@
 % Berechnen von Längen und Werten
 \usepackage{calc}
 
+% Automatische Schrift vs. Layout Anpassungen
 \usepackage{microtype}
 
 % Paket scrpage2 aus dem KOMA-Script-Paket ist für Kopf- und Fußzeilen zuständig.
@@ -71,8 +72,7 @@
 
 %========
 % JURA spezifische Pakete
-% Juristische Gliederungsebenen
-\usepackage{alphanum}
+
 
 % juristisches Literaturverzeichnis, Optionen mit \jurabibsetup
 \usepackage{jurabib}
@@ -107,8 +107,14 @@
 % Pakete mit Config
 %----------------------------------
 
+% Aussehen der Gliederung
+\usepackage[tocgraduated]{tocstyle}
+\usetocstyle{KOMAlike}
 
-\usepackage[% Farben fuer die Links
+
+% Interne Verlinkung
+\usepackage[
+       % Farben fuer die Links
        colorlinks=true,         % Links erhalten Farben statt Kaeten
        urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
        filecolor=pdffilecolor,  % \href{...} local file
@@ -124,7 +130,7 @@
        linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
        hyperfootnotes=true,     % Keine Links auf Fussnoten
        % Bookmarks
-       bookmarks=false,         % Erzeugung von Bookmarks fuer PDF-Viewer, deaktiviert da Bug von alphanum Probleme verursacht und die Lösung noch nicht wirklich funktioniert
+       bookmarks=true,         % Erzeugung von Bookmarks
        bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
        bookmarksopen=true,      % Expandierte Untermenues in Bookmarks
        bookmarksnumbered=true,  % Nummerierung der Bookmarks
@@ -167,8 +173,7 @@
 \widowpenalty = 1000
 \displaywidowpenalty = 1000
 
-\pagestyle{scrplain}
-
+%\pagestyle{scrplain}
 % Die Kopfzeile innen/links (\ihead) und in der Mitte (\chead) leer lassen, außen/rechts (\ohead) die Seitennummer
 \ihead[]{} \chead[]{} \ohead[]{}
 
@@ -184,83 +189,17 @@
 % durch die boxes.tex werden verschiedene Boxen bereit gestellt
 \input{./praeambel/boxen.tex}
 
-
-% Abstand vor und nach chapter verkleinern
-\renewcommand*\chapterheadstartvskip{\vspace*{-1cm}} 
-\renewcommand*{\chapterheadendvskip}{\vspace*{5mm}}
-
-% neuer Tabellenspaltentyp D (X zentriert)
-\newcolumntype{D}{>{\centering\arraybackslash}X}
-
-% neuer Spaltentyp für Tabellen
-\newcolumntype{C}[1]{>{\centering}p{#1}}
-
-% für lange Zitate
-\newenvironment{bquote}% 
-   {\begin{quotation}\small}% 
-   {\end{quotation}}% 
-\SetBlockEnvironment{bquote}
-
-% für kurze Zitate
-\newenvironment{squote}% 
-   {\begin{quote}\small}% 
-   {\end{quote}}% 
-\SetBlockEnvironment{squote}
-
-% \part angepasst
-\titleformat{\part}[display]{\normalfont\bfseries\LARGE\filcenter}{}{.5em}{}
-
 % durch die table.tex wird eine Tabelle
 \input{./praeambel/tabelle.tex}
 
-% Makro für Auflistungen
-% Benutzung: \begin{Auflistung}
-% \item Item 1
-% \item Item 2
-% \end{Auflistung}
-\newenvironment{Auflistung}
-{\begin{itemize}[parsep=0.2em,leftmargin=*]}
-{\end{itemize}}
+% Juristische Gliederungsebenen
+\input{./praeambel/gliederung.tex}
 
-% Makro für Aufzählungen
-% Benutzung:
-% \begin{Aufzaehlung}
-% \item Item 1
-% \item Item 2
-% \end{Aufzaehlung}
-\newenvironment{Aufzaehlung}
-{\begin{enumerate}[parsep=0.2em,leftmargin=*]}
-{\end{enumerate}}
+% Vordefinierte Farben
+\input{./praeambel/farben.tex}
 
-% ========
-% Farben 
-% Farbe der Ueberschriften
-\definecolor{sectioncolor}{RGB}{0, 0, 0}    % Schwarz
-%
-% Farben
-\definecolor{textcolor}{RGB}{0, 0, 0}        % Schwarz
-\definecolor{darkgreen}{RGB}{0,100,0}		 % Dunkelgrün
-\definecolor{darkred}{RGB}{139,0,0}			 % Dunkelrot
-\definecolor{grey97}{RGB}{247,247,247}		 % grey97
-\definecolor{darkgrey}{RGB}{64,64,64}		 % grey97
-\definecolor{blau1}{RGB}{135,206,250}		 % Helles Blau
-\definecolor{blau2}{rgb}{0.1,0.1,0.25}		 % Dunkleres Blau (alt: 0.5)
-\definecolor{orange}{rgb}{1,0.39,0.04}
-\definecolor{hellgelb}{rgb}{1.0,1.0,0.9}
-\definecolor{hellblau}{rgb}{0.85,0.95,1.0}
-\definecolor{dunkelgrau}{gray}{0.35}
-\definecolor{mittelgrau}{gray}{0.85}
-\definecolor{hellgrau}{gray}{0.93}
-\definecolor{link}{rgb}{0.7,0.28,0.0}
-%
-% Farbe fuer grau hinterlegte Boxen (fuer Paket framed.sty)
-\definecolor{shadecolor}{gray}{0.90}
-
-% Farben fuer die Links im PDF
-\definecolor{pdfurlcolor}{rgb}{0.6,0,0}
-\definecolor{pdffilecolor}{rgb}{0,0,0}
-\definecolor{pdflinkcolor}{rgb}{0,0,0}
-
+% sonstige Makros
+\input{./praeambel/sonstige-makros.tex}
 
 % ========
 % Bibliographie und Fußnoten
@@ -324,20 +263,3 @@
 \newcommand*{\Hinweis}[1]{\textbf{Hinweis:} #1}
 \newcommand*{\Warnung}[1]{\textbf{Warnung:} #1}
 \newcommand*{\Achtung}[1]{\textbf{Achtung:} #1}
-
-% Bugfix für alphanum i.V.m. hyperref bookmarks=true
-% Leider noch nicht funktionstüchtig
-\AtBeginDocument{%
-\renewcommand*\theHlvla{\arabic{lvla}}%
-\renewcommand*\theHlvlb{\theHlvla.\arabic{lvlb}}%
-\renewcommand*\theHlvlc{\theHlvlb{\theHlvla.\arabic{lvlc}}}%
-\renewcommand*\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\arabic{lvld}}}}%
-\renewcommand*\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\arabic{lvle}}}}}%
-\renewcommand*\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\Alph{lvlf}}}}}}%
-\renewcommand*\theHlvlg{\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\Alph{lvlg}}}}}}}%
-\renewcommand*\theHlvlh{\theHlvlg{\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\arabic{lvlh}}}}}}}}%
-\renewcommand*\theHlvli{\theHlvlh{\theHlvlg{\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\arabic{lvli}}}}}}}}}%
-\renewcommand*\theHlvlj{\theHlvli{\theHlvlh{\theHlvlg{\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\arabic{lvlj}}}}}}}}}}%
-\renewcommand*\theHlvlk{\theHlvlj{\theHlvli{\theHlvlh{\theHlvlg{\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\Alph{lvlk}}}}}}}}}}}%
-\renewcommand*\theHlvll{\theHlvlk{\theHlvlj{\theHlvli{\theHlvlh{\theHlvlg{\theHlvlf{\theHlvle{\theHlvld{\theHlvlc{\theHlvlb{\theHlvla.\Alph{lvll}}}}}}}}}}}}%
-}
