@@ -1,9 +1,6 @@
 % ========
 % Jura
 
-% stellt die Markierungen in einer enumerate Umgebung auf diejenigen um, die in der Rechtswissenschaft üblich sind: I, 2, c) dd). (via jurabase)
-\juraenum
-
 %**************************************************************
 % Entnommen jur-rdnr.sty
 % Peter Felix Schuster (http://www.peterfelixschuster.de)
@@ -28,21 +25,26 @@
 \normalmarginpar
 
 % Zähler über Makro erhöhen und am Rand als Randnummer ausgeben
-\newcommand{\randnummer}{\newrandnummer\marginpar{\vspace{-30pt}{\strut\\\centering\textbf{\therandnr}}}}
+\newcommand{\randnummer}{\newrandnummer\marginpar{\vspace{-4pt}{\strut\\\centering\textbf{\therandnr}}}}
 
 % Makro für Zwischenrandnummern
 \newcommand{\zwischenrandnummer}{\newzwischenrandnummer\marginpar{\strut\\\centering\textbf{\thezwrandnr}}}
 \makeatother
 %**************************************************************
 
-%Formatierung für nicht nummerierte Listen
-\renewcommand{\labelitemi}{$\m@th\bullet$} %erste Ebene: Fetter schwarzer Punkt (Standard)
-\renewcommand{\labelitemii}{--}%zweite Ebene: Gedankenstrich
-%Vorher: {\Rightarrow} Pfeil nach rechts, $\m@th\diamond$ Karo
-\renewcommand{\labelitemiii}{$\m@th\circ$}%dritte Ebene: Leerer Kreis
-%Vorher: {\Pointinghand} Hand 
-\renewcommand{\labelitemiv}{$\m@th\rightarrow$}%vierte Ebene: Rechts-Pfeil
-%Vorher: {\Crossedbox}Ankreuz-Kästchen
+% Formatierung für nicht nummerierte Listen 
+\makeatletter
+\renewcommand{\labelitemi}{$\m@th\bullet$} 
+\renewcommand{\labelitemii}{--}
+\renewcommand{\labelitemiii}{$\m@th\circ$}
+\renewcommand{\labelitemiv}{$\m@th\rightarrow$}
+\makeatother
+
+% Formatierung für nummerierte Listen [I, 2, c) dd)]
+\renewcommand{\labelenumi}{\Roman{enumi}.}
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+\renewcommand{\labelenumiii}{\alph{enumiii})}
+\renewcommand{\labelenumiv}{\alph{enumiv}\alph{enumiv})}
 
 
 
@@ -79,6 +81,25 @@
 \providecommand{\Seite}[1]{S.\,#1}
 \providecommand{\zBsp}{z.\,B.}
 \providecommand{\fremdwort}[2]{\foreignlanguage{#1}{\itshape{}#2}}%\fremdwort{#1=Sprache}{#2=Text}
-
-%\providecommand{\altzahl}[1]{{\oldstyle #1}}
+\newcommand*{\qll}[1]{\emph{#1}}%           fuer Quellen
+\newcommand{\code}[1]{\texttt{#1}}%         fuer Computeranweisungen, tags o.ae.
+\newcommand*{\marke}[1]{{\scshape #1}}%     Markennamen % \texttrademark (TM) oder \textregistered (R)?
+\newcommand*{\firma}[1]{{\scshape #1}}%     Unternehmensbezeichnung
+\newcommand*{\prdbez}[1]{%                  Produktbezeichnung
+  {\scshape #1}%
+  \index{#1}%
+}
+\providecommand{\altzahl}[1]{{\oldstyle #1}}
 %\DeclareTextSymbol{\textNr}{TS1}{'233}
+
+\newcommand*{\arr}{\(\rightarrow\)\space}
+\newcommand*{\arrr}{\(\longrightarrow\)\space}
+\newcommand*{\Arr}{\(\Rightarrow\)\space}
+\newcommand*{\Arrr}{\(\Longrightarrow\)\space}
+\newcommand*{\lrarr}{\(\leftrightarrow\)\space}
+
+\newcommand*{\larr}{\(\leftarrow\)}
+\newcommand*{\Larr}{\(\Leftarrow\)}
+
+\newcommand*{\darr}{\(\downarrow\)}
+\newcommand*{\Darr}{\(\Downarrow\)}

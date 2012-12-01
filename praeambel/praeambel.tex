@@ -3,104 +3,49 @@
 %----------------------------------
 \input{./praeambel/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
 
-%========
+
 % Schrift & Sprache
-% Schriftsatz utf8 und Deutsch
 \usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden 
 \usepackage[T1]{fontenc} % T1-Fonts
 \usepackage[ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung (neue Rechtschreibung)
+\usepackage{marvosym} % diverse Symbole
+\usepackage{wasysym} % diverse Symbole 
+\usepackage{eulervm} % Mathematische Symbole 
+\usepackage{amssymb} % Mathematische Symbole 
+\RequirePackage{pifont} % einige Befehle brauchen pifont (Symbole)
+\usepackage[babel,german=guillemets]{csquotes} % franz. Anführungszeichen verwenden
+\usepackage{rotating} % erlaubt es Text zu drehen
 
-% Schriftart
-\input{./praeambel/schriften.tex}
-
-% diverse Symbole
-\usepackage{marvosym} 
-\usepackage{wasysym}
-
-% Mathematische Symbole 
-\usepackage{eulervm}
-\usepackage{amssymb}
-
-% einige Befehle brauchen pifont (Symbole)
-\RequirePackage{pifont}
-
-% franz. Anführungszeichen verwenden
-\usepackage[babel,german=guillemets]{csquotes}
-
-% erlaubt es Text zu drehen
-\usepackage{rotating}
-
-%========
 % Layout Pakete
-% behebt Makrogrenz-Problem
-\usepackage{xspace}
+\usepackage{xspace} % behebt Makrogrenz-Problem
+\usepackage{geometry} % für Seitenränder, 
+\usepackage{setspace} % für Zeilenabstand
+\usepackage{calc} % Berechnen von Längen und Werten
+\usepackage{microtype} % Automatische Schrift vs. Layout Anpassungen
+\usepackage{scrpage2} % für Kopf- und Fußzeilen
 
-% für Seitenränder, s.u.
-\usepackage{geometry} 
-
-% für Zeilenabstand
-\usepackage{setspace}
-
-% Berechnen von Längen und Werten
-\usepackage{calc}
-
-% Automatische Schrift vs. Layout Anpassungen
-\usepackage{microtype}
-
-% Paket scrpage2 aus dem KOMA-Script-Paket ist für Kopf- und Fußzeilen zuständig.
-\usepackage{scrpage2}
-
-%========
 % Tabellen
-% bessere Tabellen
-\usepackage{tabularx}
+\usepackage{tabularx} % bessere Tabellen
+\usepackage[para]{threeparttable} %Fussnoten innerhalb von Tabellen
+\usepackage{array} % wird von colortbl benötigt
+\usepackage{colortbl} % erlaubt Farbige Zellen
+\usepackage[table]{xcolor} % alternierende farbige Tabellenzeilen
+\usepackage{booktabs} % Gestaltung der horizontalen Linien innerhalb einer Tabelle
 
-%Fussnoten innerhalb von Tabellen
-\usepackage[para]{threeparttable}
-
-% erlaubt Farbige Zellen
-\usepackage{colortbl}
-
-% alternierende farbige Tabellenzeilen
-\usepackage[table]{xcolor}
-
-% Gestaltung der horizontalen Linien innerhalb einer Tabelle
-\usepackage{booktabs}
-
-% wird von colortbl benötigt
-\usepackage{array}
-
-%========
 % JURA spezifische Pakete
+\usepackage{jurabib} % juristisches Literaturverzeichnis, Optionen mit \jurabibsetup
+\usepackage{acronym} % Abkürzungsverzeichnis
+\usepackage{enumitem} % Anpassbare Enumerates/Itemizes
+\usepackage{marginnote} % für Randnotizen (von den Randnummern verwendet)
+\usepackage{titlesec} % ermöglicht das anpassen der Titel
 
-
-% juristisches Literaturverzeichnis, Optionen mit \jurabibsetup
-\usepackage{jurabib}
-
-%Juristische Abk"urzungen (juramisc-B"undel)
-\usepackage{jurabase}
-
-
-%========
 % andere Pakete
-
-% Grafikpaket
-\usepackage{graphicx}
-
-% für hervor gehobene Boxen
-\usepackage{tikz}
+\usepackage{graphicx} % Grafikpaket
+\usepackage{tikz} % für hervor gehobene Boxen
 \usetikzlibrary{calc,arrows,shadings,shadows}
 \newcommand\Loadedframemethod{tikz}
 \usepackage[framemethod=\Loadedframemethod]{mdframed}
-
-% Anpassbare Enumerates/Itemizes
-\usepackage{enumitem}
-
-% für Randnotizen (von den Randnummern verwendet)
-\usepackage{marginnote}
-
-% ermöglicht das anpassen der Titel
-\usepackage{titlesec}
+\usepackage{cmap} % to make the PDF files "searchable and copyable" in pdf viewer
 
 
 %----------------------------------
@@ -108,19 +53,18 @@
 %----------------------------------
 
 % Aussehen der Gliederung
-\usepackage[tocgraduated]{tocstyle}
+\usepackage[tocgraduated]{tocstyle} % Aussehen der Gliederung
 \usetocstyle{KOMAlike}
 
-
-% Interne Verlinkung
+% Hyperlinks und interne PDF-Verweise
 \usepackage[
        % Farben fuer die Links
        colorlinks=true,         % Links erhalten Farben statt Kaeten
        urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
        filecolor=pdffilecolor,  % \href{...} local file
        linkcolor=pdflinkcolor,  % \ref{...} and \pageref{...}
-       citecolor=black,
-       menucolor=black,
+       citecolor=pdfurlcolor,
+       menucolor=pdfurlcolor,
        % Links
        raiselinks=true,			% calculate real height of the link
        backref=false,           % Backlinks im Literaturverzeichnis (section, slide, page, none)
@@ -157,34 +101,17 @@
 \makeatother
 
 % URL Paket (darf erst nach hyperref geladen werden
-\usepackage{url} 
+%\usepackage{url} 
 
 %----------------------------------
 % Config
 %----------------------------------
-% ========
+
 % Layout
-% Optionen für das geometry-Paket. 
-% Rand links 2,5cm, rechts 2,5cm, oben 3cm, unten 3cm.
-\geometry{lmargin=25mm,rmargin=2.5cm,tmargin=30mm,bmargin=30mm,headheight=0ex}
+\input{./praeambel/gestaltung.tex}
 
-% Hurenkinder und Schusterjungen/Waisenkinder unterdrücken
-\clubpenalty = 1000
-\widowpenalty = 1000
-\displaywidowpenalty = 1000
-
-%\pagestyle{scrplain}
-% Die Kopfzeile innen/links (\ihead) und in der Mitte (\chead) leer lassen, außen/rechts (\ohead) die Seitennummer
-\ihead[]{} \chead[]{} \ohead[]{}
-
-% Die Fußzeile leer lassen.
-\ifoot{} \cfoot[\thepage]{\thepage} \ofoot{}
-
-% Absätze nicht einrücken
-\setlength{\parindent}{0pt}
-
-% mdframed Global Config
-\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+% Schriftart
+\input{./praeambel/schriften.tex}
 
 % durch die boxes.tex werden verschiedene Boxen bereit gestellt
 \input{./praeambel/boxen.tex}
@@ -201,65 +128,9 @@
 % sonstige Makros
 \input{./praeambel/sonstige-makros.tex}
 
-% ========
 % Bibliographie und Fußnoten
+\input{./praeambel/bibliographie.tex}
 
-% Konfiguriert das jurabib-Paket. Kommentare aus der Dokumentation
-\jurabibsetup{%
-	authorformat=italic, 		% Autor kursiv
-	titleformat={commasep,all},	% Komma zwischen Autor/Bearbeiter und Titel im Zitat;
-	annotatorformat=italic, 	% Bearbeiter kursiv
-	annotatorlastsep=divis, 	% Bearbeiter nach Bindestrich
-	commabeforerest, 			% Komma nach Verfasser (vor dem Rest)
-	crossref={long,dynamic}, 	% Lange Querverweise (auf Festschriften etwa)
-	howcited=compare, 			%"zitiert als...", wenn shorttitle anders als title
-	pages={always,test}, 		% zitierten Seitenbereich immer ausgeben (always),
-	bibformat={tabular,ibidem},	% Litverz. tabellarisch, mit der-/dieselbe
-	lookforgender, 				% Auf das gender-Feld achten, um ders./dies. Zitate zu ermglichen
-	superscriptedition=switch, 	% Hochgestellte Auflage, wenn ssedition=1 in .bib
-	dotafter=bibentry, 			% Punkt nach jedem Eintrag im Lit.verzeichnis
-}
-
-\citetitlefortype{article,periodical,incollection} % Diese immer mit Titel zitieren
-\formatpages[~]{article}{(}{)} % Zeitschriften als JZ 2001, 1057, (S.) %[, ]
-\formatpages[~]{incollection}{(}{)} % Sammbelbandbeiträge als FS xy, 1057, (S.) %[, ]
-
-%Bei Festschriften und Zeitschriftenartikeln: "`in"' vor Titel der Sammlung
-\renewcommand{\bibjtsep}{In: } 
-\renewcommand{\bibbtsep}{In: } 
-
-%Bei Periodika (AcP et.al.) die Jahreszahl in runde (statt eckige) Klammern setzen.
-\renewcommand*{\bibpldelim}{(}
-\renewcommand*{\bibprdelim}{)}
-
-%Linke Spalte des Lit.verz. soll ein Drittel der ges. Textbreite einnehmen
-\renewcommand*{\bibleftcolumn}{\textwidth/3}
-
-%Nicht Punkt, sondern Komma nach Auflage
-\DeclareRobustCommand{\jbaensep}{,}
-
-%Bei Artikeln: Heft-Nummer in Klammern hinter dem Erscheinungsjahr, etwa 2002(7). (aus jurabib-Gruppe)
-\DeclareRobustCommand{\artnumberformat}[1]{(#1)}
-
-%Kein Komma hinter Zeitschriftenname (aus: jurabib-Gruppe #661)
-\AddTo\bibsgerman{\def\ajtsep{}}
-
-% Keine hochgestellten Ziffern in der Fussnote (KOMA-Script-spezifisch):
-\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
-
-% Abstand Text <-> Fussnote
-\addtolength{\skip\footins}{\baselineskip}
-
-% Verhindert das Fortsetzen von Fussnoten auf der gegenüberligenden Seite
-\interfootnotelinepenalty=10000 
-
-
-% ========
-% ANDERES
 % durch die jura.tex werden verschiedene spezielle Jura Funktionen bereit gestellt
 \input{./praeambel/jura.tex}
 
-% Hinweis und Warnung
-\newcommand*{\Hinweis}[1]{\textbf{Hinweis:} #1}
-\newcommand*{\Warnung}[1]{\textbf{Warnung:} #1}
-\newcommand*{\Achtung}[1]{\textbf{Achtung:} #1}

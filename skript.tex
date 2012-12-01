@@ -1,5 +1,5 @@
 % scrreprt-Klasse
-\documentclass[ngerman, oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false,parskip=full-]{scrreprt}
+\documentclass[ngerman, oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false,parskip=full-,DIV=14]{scrreprt}
 
 % Preamble einbinden
 \input{./praeambel/praeambel.tex}
@@ -28,21 +28,19 @@
 % Ende Hauptteil
 %-----------------
 
-\appendix
-\pagenumbering{gobble}
-\part*{Anhänge}
 
-% Seitenzahlen Römisch und bei 4 Beginnen
-\pagenumbering{Alph}\setcounter{page}{1}
-
-%-------------
-% Anhänge
-%-------------
-\include{./anhaenge/anhang01}
-
-%-----------------
-% Ende Anhänge
-%-----------------
+\begin{appendix}
+    \initAnhang
+    %-------------
+    % Anhänge
+    %-------------
+    \anhang{./inhalt/abkuerzungen.tex}
+    \anhang{./anhaenge/anhang01.tex}
+    
+    %-----------------
+    % Ende Anhänge
+    %-----------------
+\end{appendix}
 
 \end{document}
  
