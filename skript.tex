@@ -1,0 +1,46 @@
+% scrreprt-Klasse
+\documentclass[ngerman, oneside, headings=small,headsepline,12pt, a4paper, numbers=noenddot, chapterprefix=false,parskip=full-,DIV=14]{scrreprt}
+
+% Preamble einbinden
+\input{./praeambel/praeambel.tex}
+
+\input{./einstellungen.tex}
+\usepackage{blindtext}
+\begin{document}
+
+% Titelseite, Inhaltsverzeichnis
+\input{./praeambel/titel.tex}
+
+% Seitenzahlen Arabisch und neu Beginnen
+\pagenumbering{arabic}
+\clearpage\setcounter{page}{1}
+
+% Anderthalbfacher Zeilenabstand
+\onehalfspacing
+
+%-------------
+% Hauptteil
+%-------------
+\include{./inhalt/kapitel01}
+
+
+%-----------------
+% Ende Hauptteil
+%-----------------
+
+
+\begin{appendix}
+    \initAnhang
+    %-------------
+    % Anhänge
+    %-------------
+    \anhang{./anhaenge/abkuerzungen.tex}
+    \anhang{./anhaenge/anhang01.tex}
+    
+    %-----------------
+    % Ende Anhänge
+    %-----------------
+\end{appendix}
+
+\end{document}
+ 

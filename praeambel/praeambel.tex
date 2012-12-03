@@ -1,0 +1,133 @@
+%----------------------------------
+% laden der Verschiedenen Pakete
+%----------------------------------
+\input{./praeambel/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
+
+% Schrift & Sprache
+\usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden 
+\usepackage[T1]{fontenc} % T1-Fonts
+\usepackage[ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung (neue Rechtschreibung)
+\usepackage{marvosym} % diverse Symbole
+\usepackage{wasysym} % diverse Symbole 
+\usepackage{eulervm} % Mathematische Symbole 
+\usepackage{amssymb} % Mathematische Symbole 
+\RequirePackage{pifont} % einige Befehle brauchen pifont (Symbole)
+\usepackage[babel,german=guillemets]{csquotes} % franz. Anführungszeichen verwenden
+\usepackage{rotating} % erlaubt es Text zu drehen
+
+% Layout Pakete
+\usepackage{xspace} % behebt Makrogrenz-Problem
+\usepackage{geometry} % für Seitenränder, 
+\usepackage{setspace} % für Zeilenabstand
+\usepackage{calc} % Berechnen von Längen und Werten
+\usepackage{microtype} % Automatische Schrift vs. Layout Anpassungen
+\usepackage{scrpage2} % für Kopf- und Fußzeilen
+
+% Tabellen
+\usepackage{tabularx} % bessere Tabellen
+\usepackage[para]{threeparttable} %Fussnoten innerhalb von Tabellen
+\usepackage{array} % wird von colortbl benötigt
+\usepackage{colortbl} % erlaubt Farbige Zellen
+\usepackage[table]{xcolor} % alternierende farbige Tabellenzeilen
+\usepackage{booktabs} % Gestaltung der horizontalen Linien innerhalb einer Tabelle
+\usepackage{multirow}
+\usepackage{longtable}
+
+% JURA spezifische Pakete
+\usepackage{jurabib} % juristisches Literaturverzeichnis, Optionen mit \jurabibsetup
+\newcommand{\AlleAbkuerzungenAuflisten}[1]{\ifthenelse{\equal{#1}{ja}}{\usepackage{acronym}}{}\ifthenelse{\equal{#1}{nein}}{\usepackage[printonlyused]{acronym}}{}} % Abkürzungsverzeichnis
+\usepackage{enumitem} % Anpassbare Enumerates/Itemizes
+\usepackage{marginnote} % für Randnotizen (von den Randnummern verwendet)
+\usepackage{titlesec} % ermöglicht das anpassen der Titel
+
+% andere Pakete
+\usepackage{graphicx} % Grafikpaket
+\usepackage{tikz} % für hervor gehobene Boxen
+\usetikzlibrary{calc,arrows,shadings,shadows}
+\newcommand\Loadedframemethod{tikz}
+\usepackage[framemethod=\Loadedframemethod]{mdframed}
+
+
+%----------------------------------
+% Pakete mit Config
+%----------------------------------
+
+% Aussehen der Gliederung
+\usepackage[tocgraduated]{tocstyle} % Aussehen der Gliederung
+\usetocstyle{KOMAlike}
+
+% Hyperlinks und interne PDF-Verweise
+\usepackage[
+       % Farben fuer die Links
+       colorlinks=true,         % Links erhalten Farben statt Kaeten
+       urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
+       filecolor=pdffilecolor,  % \href{...} local file
+       linkcolor=pdflinkcolor,  % \ref{...} and \pageref{...}
+       citecolor=pdfurlcolor,
+       menucolor=pdfurlcolor,
+       % Links
+       raiselinks=true,			% calculate real height of the link
+       backref=false,           % Backlinks im Literaturverzeichnis (section, slide, page, none)
+       pagebackref=false,       % Backlinks im Literaturverzeichnis mit Seitenangabe
+       verbose,
+       hyperindex=true,         % backlinkex index
+       linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
+       hyperfootnotes=true,     % Keine Links auf Fussnoten
+       % Bookmarks
+       bookmarks=true,         % Erzeugung von Bookmarks
+       bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
+       bookmarksopen=false,      % Expandierte Untermenues in Bookmarks
+       bookmarksnumbered=true,  % Nummerierung der Bookmarks
+       bookmarkstype=toc,       % Art der Verzeichnisses
+       bookmarksdepth=3,
+       % Anchors
+       plainpages=false,        % Anchors even on plain pages ?
+       pageanchor=true,         % Pages are linkable
+       pdfstartview=FitH,       % Dokument wird Fit Width geaefnet
+       pdfpagemode=UseOutlines, % Bookmarks im Viewer anzeigen
+       pdfpagelabels=true,      % set PDF page labels
+]{hyperref}
+
+% PDF Informationen
+\makeatletter
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={\@subject},
+    pdfkeywords={\@kwords}
+  }
+}
+\makeatother
+
+%----------------------------------
+% Config
+%----------------------------------
+
+% Layout
+\input{./praeambel/gestaltung.tex}
+
+% Schriftart
+\input{./praeambel/schriften.tex}
+
+% durch die boxes.tex werden verschiedene Boxen bereit gestellt
+\input{./praeambel/boxen.tex}
+
+% durch die table.tex wird eine Tabelle
+\input{./praeambel/tabelle.tex}
+
+% Juristische Gliederungsebenen
+\input{./praeambel/gliederung.tex}
+
+% Vordefinierte Farben
+\input{./praeambel/farben.tex}
+
+% sonstige Makros
+\input{./praeambel/sonstige-makros.tex}
+
+% Bibliographie und Fußnoten
+\input{./praeambel/bibliographie.tex}
+
+% durch die jura.tex werden verschiedene spezielle Jura Funktionen bereit gestellt
+\input{./praeambel/jura.tex}
+

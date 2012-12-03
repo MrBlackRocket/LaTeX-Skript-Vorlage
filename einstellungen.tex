@@ -1,10 +1,14 @@
-% Schriftauswahl als Standard ist die Droid Familie gewählt
-% alternativ kann aber das Times/Helvetica/Courier Dreigespann
-% verwendet werden, dafür muss 'droid' durch 'times' ersetzt
-% werden. Also statt \Schrift{droid}, \Schrift{times},
-% Bei Auswahl der Droid Schrift muss diese auch installiert 
-% sein (http://www.ctan.org/tex-archive/fonts/droid/)
-\Schrift{droid}
+% Schriftauswahl als Standard ist Palantino/Helvetica/Courier
+% gewählt alternativ kann aber Times/Helvetica/Courier oder
+% Droid Schrift Familie verwendet werden, dafür muss 
+% 'palantino' durch 'times' bzw. 'droid' ersetzt werden. Bei 
+% Auswahl der Droid Schrift sollte diese auch installiert sein
+% (http://www.ctan.org/tex-archive/fonts/droid/)
+\Schrift{palantino}
+
+% Sollen alle Abürzungen angezeigt werden?
+% Standart ist 'nein'
+\AlleAbkuerzungenAuflisten{nein}
 
 % Titel des Scripts
 \title{Öffentlichen Recht III}
@@ -14,7 +18,7 @@
 % './graphics/unilogo.png' durch './graphics/das-nichts.png'
 % ersetzt werden.
 \makeatletter
-	\newcommand*\@logo{./graphics/unilogo.png}
+	\newcommand*\@logo{./grafiken/unilogo.png}
 \makeatother
 
 % Ersteller/Autor des Scripts
@@ -26,7 +30,7 @@
 \makeatother
 
 % eine kurze Beschreibung des Scriptes
-\subject{Mitschrift aus Vorlasung XY}
+\subject{Mitschrift aus Vorlesung XY}
 
 % Schlüsselwörter
 \makeatletter
@@ -49,6 +53,6 @@
 % einem '%'-Zeichen auskommentiert werden. 
 \makeatletter
 	\newcommand*\@lizenz{
-		\href{http://creativecommons.org/licenses/by-sa/3.0/deed.de}{\includegraphics[width=1in]{./graphics/by-sa.png}}
+		\href{http://creativecommons.org/licenses/by-sa/3.0/deed.de}{\includegraphics[width=1in]{./grafiken/by-sa.png}}
 	}
 \makeatother

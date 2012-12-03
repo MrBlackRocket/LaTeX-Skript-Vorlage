@@ -3,7 +3,7 @@
 % Inspiriert durch die mdframed Beispiele und jur-info.sty von Peter Felix Schuster (http://www.peterfelixschuster.de/)
 
 % Fieldset Box 
-% Verwendung \begin{fameexercise}{<TITEL>}<INHALT>\end{fameexercise}
+% Verwendung \begin{fieldset}{<TITEL>}<INHALT>\end{fieldset}
 \tikzstyle{titregris} =
      [draw=gray, thick, fill=white, shading = exersicetitle, %
       text=gray, rectangle, rounded corners, right,minimum height=.7cm]
@@ -42,16 +42,16 @@
 }
 \makeatother
 
-\newenvironment{fameexercise}[1]% 
+\newenvironment{fieldset}[1]% 
    {\begin{mdframed}[style=exercisestyle,theexercisetitle={#1}]}% 
    {\end{mdframed}}% 
-\SetBlockEnvironment{fameexercise}
+\SetBlockEnvironment{fieldset}
 
 % Vor dem Text ein Stopschild und roter Text 
 % Verwendung \begin{stopschild} <INHALT> \end{stopschild}
 \tikzset{
   warningsymbol/.style={
-      rectangle,draw=red,
+      rectangle,
       fill=white,scale=1,
       overlay}}
 \mdfdefinestyle{warning}{%
@@ -173,7 +173,7 @@
      innerleftmargin=5pt;innerrightmargin=5pt,innertopmargin=5pt.innerbottommargin=5pt,
 }
 \newenvironment{infobox}% 
-   {\begin{mdframed}[style=infobox,frametitle={{\Large \Info \hspace{0.3em} Hinweis} \vspace{1em}}]}% 
+   {\begin{mdframed}[style=infobox, frametitle={{\LARGE \Info \hspace{0.3em}}{\Large Hinweis} \vspace{0.5em}}]}% 
    {\end{mdframed}}% 
 \SetBlockEnvironment{infobox}
 
@@ -185,7 +185,7 @@
      innerleftmargin=5pt;innerrightmargin=5pt,innertopmargin=5pt.innerbottommargin=5pt,
 }
 \newenvironment{wichtigbox}% 
-   {\begin{mdframed}[style=wichtigbox,frametitle={\textcolor{red}{{\Large \Lightning \hspace{0.3em} Wichtig}} \vspace{0.5em}}] }% 
+   {\begin{mdframed}[style=wichtigbox,frametitle={\textcolor{red}{{\Large \Lightning \hspace{0.2em} Wichtig}} \vspace{0.5em}}] }% 
    {\end{mdframed}}% 
 \SetBlockEnvironment{wichtigbox}
 

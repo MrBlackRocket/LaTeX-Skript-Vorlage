@@ -1,0 +1,99 @@
+% ========
+% Jura
+
+%**************************************************************
+% Entnommen jur-rdnr.sty
+% Peter Felix Schuster (http://www.peterfelixschuster.de)
+%**************************************************************
+\makeatletter
+% Zähler für Fälle und Abwandlungen definieren und setzen
+\newcommand{\@rdnrname}{Rn.\,} % Makro für die Bezeichnung für Fälle, macht es flexibel zu ändern
+\newcounter{randnr} % Zähler randnr (für Randnummer)
+\newcounter{zwrandnr}[randnr] % Zähler zwrandnr (für Zwischen-Randnummer), eine Erhöhung von randnr setzt ihn zurück
+\setcounter{randnr}{0} % Anfangs auf 0 setzen
+\setcounter{zwrandnr}{0} % Anfangs auf 0 setzen
+\newcommand{\newrandnummer}{\refstepcounter{randnr}} % Makro, das den Zähler erhöht
+\newcommand{\newzwischenrandnummer}{\refstepcounter{zwrandnr}} % Makro, das den Zähler erhöht
+\renewcommand{\therandnr}{\arabic{randnr} }% In arabischen Ziffern nummerieren.
+\renewcommand{\thezwrandnr}{\therandnr\,\alph{zwrandnr}} % Kleinbuchstaben nach ''normaler'' Randnummer.
+\renewcommand{\p@randnr}{\@rdnrname} % Bei Verweisen Rdnr. vor Zahl ausgegeben
+\renewcommand{\p@zwrandnr}{\@rdnrname} % Bei Verweisen Rdnr. vor Zahl\,Buchstabe ausgegeben
+
+% marginnote Config
+\setlength{\marginparwidth}{10mm}
+\marginparsep2mm
+\normalmarginpar
+
+% Zähler über Makro erhöhen und am Rand als Randnummer ausgeben
+\newcommand{\randnummer}{\newrandnummer\marginnote{\strut\\\quad\textbf{\therandnr}}}
+
+% Makro für Zwischenrandnummern
+\newcommand{\zwischenrandnummer}{\newzwischenrandnummer\marginnote{\strut\\\quad\textbf{\thezwrandnr}}}
+\makeatother
+%**************************************************************
+
+% Formatierung für nicht nummerierte Listen 
+\makeatletter
+\renewcommand{\labelitemi}{$\m@th\bullet$} 
+\renewcommand{\labelitemii}{--}
+\renewcommand{\labelitemiii}{$\m@th\circ$}
+\renewcommand{\labelitemiv}{$\m@th\rightarrow$}
+\makeatother
+
+% Formatierung für nummerierte Listen [I, 2, c) dd)]
+\renewcommand{\labelenumi}{\Roman{enumi}.}
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+\renewcommand{\labelenumiii}{\alph{enumiii})}
+\renewcommand{\labelenumiv}{\alph{enumiv}\alph{enumiv})}
+
+
+
+%Abkürzungen - vornehmlich für schmale Zwischenräume (\,) nützlich
+%benötigt für einige Befehle jurabib. Befehl nachschlagen, mit dem überprüft werden kann, ob geladen!
+\newcommand{\Abs}[1]{\acs{Abs}\,#1\xspace}
+\newcommand{\aF}{\acs{aF}\xspace}
+\newcommand{\aM}{\acs{aM}\xspace}
+\newcommand{\Art}{\acs{Art}\xspace}
+\newcommand{\euro}[1]{#1\,\EUR\xspace}
+\newcommand{\f}{\acs{f}\xspace}
+\newcommand{\ff}{\acs{ff}\xspace}
+\newcommand{\hL}{\acs{hL}\xspace}
+\newcommand{\hM}{\acs{hM}\xspace}
+\newcommand{\idR}{\acs{idR}\xspace}
+\newcommand{\iHv}{\acs{iHv}\xspace}
+\newcommand{\iSd}{\acs{iSd}\xspace} %%
+\newcommand{\iSv}{\acs{iSv}\xspace}
+\newcommand{\iVm}{\acs{iVm}\xspace}
+\newcommand{\ja}{\ding{'63}\xspace}
+\newcommand{\mwN}{\acs{mwN}\xspace}
+\newcommand{\LWL}{{\bfseries\underline{\emph{\acs{LWL}}}}} % Literaturwunschliste, also für Blindzitate.
+\newcommand{\nein}{\ding{'67}\xspace}
+\newcommand{\nF}{\acs{nF}\xspace} 
+\newcommand{\Nr}[1]{\acs{Nr}\,#1\xspace}
+\newcommand{\pg}[1]{\S\,#1} %\pg{x} => (Paragraf) x
+\newcommand{\Pg}[1]{\SSS\,#1} %\Pg{x} => (Paragrafen) x 
+\newcommand{\pgAbs}[2]{\S\,#1 Abs.\,#2} %\pgAbs{x}{y} => (Paragraf) x Abs. y
+\newcommand{\pgAbsS}[3]{\S\,#1 Abs.\,#2 S.\,#3}
+\newcommand{\pgRn}[2]{\S\,#1 Rn.\,#2} %\pg{x}{y} => (Paragraf) x Rn. y
+\newcommand{\pgS}[2]{\S\,#1 S.\,#2}
+\newcommand{\Rn}[1]{Rn.\,#1}
+\newcommand{\zB}{\acs{zB}\xspace}
+\newcommand{\fremdwort}[2]{\foreignlanguage{#1}{\itshape{}#2}} %\fremdwort{#1=Sprache}{#2=Text}
+\newcommand{\qll}[1]{\emph{#1}}%           fuer Quellen
+\newcommand{\code}[1]{\texttt{#1}}%        fuer Computeranweisungen, tags o.ae.
+\newcommand{\marke}[1]{{\scshape #1}}%     Markennamen % \texttrademark (TM) oder \textregistered (R)?
+\newcommand{\firma}[1]{{\scshape #1}}%     Unternehmensbezeichnung
+\newcommand{\prdbez}[1]{{\scshape #1}\index{#1}} %Produktbezeichnung
+
+\newcommand*{\arr}{\(\rightarrow\)\space}
+\newcommand*{\arrr}{\(\longrightarrow\)\space}
+\newcommand*{\Arr}{\(\Rightarrow\)\space}
+\newcommand*{\Arrr}{\(\Longrightarrow\)\space}
+\newcommand*{\lrarr}{\(\leftrightarrow\)\space}
+\newcommand*{\larr}{\(\leftarrow\)}
+\newcommand*{\Larr}{\(\Leftarrow\)}
+\newcommand*{\darr}{\(\downarrow\)}
+\newcommand*{\Darr}{\(\Downarrow\)}
+\newcommand*{\carr}{\mbox{$\curvearrowright$}}
+
+\newcommand{\glink}[4]{\href{http://dejure.org/gesetze/#4/#2.html}{#1\xspace#2\xspace#3\xspace#4}}

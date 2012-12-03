@@ -1,0 +1,27 @@
+% Optionen für das geometry-Paket. 
+% Rand links 2,5cm, rechts 2,5cm, oben 3cm, unten 3cm.
+\geometry{lmargin=25mm,rmargin=2.5cm,tmargin=30mm,bmargin=30mm,headheight=0ex}
+
+% Hurenkinder und Schusterjungen/Waisenkinder vermeiden
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% löscht alle bisherigen Kopf- und Fußzeilen
+\clearscrheadfoot
+
+% selbstgebastelte Kopf-/Fußzeilen
+\pagestyle{scrplain}
+
+% Die Kopfzeile 
+\ihead[]{} \chead[]{} \ohead[]{}
+
+% Fußzeile
+\ifoot{} \cfoot[\pagemark]{\pagemark} \ofoot{}
+
+
+% Absätze nicht einrücken
+\setlength{\parindent}{0pt}
+
+% mdframed Global Config
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
