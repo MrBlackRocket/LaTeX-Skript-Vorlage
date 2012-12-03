@@ -1,5 +1,14 @@
-% ========
+% neuer Tabellenspaltentyp D (X zentriert)
+\newcolumntype{D}{>{\centering\arraybackslash}X}
+
+%**************************************************************
 % Makro für Tabellen aus dem Quellcode des freiesMagazin (http://www.freiesmagazin.de/)
+% Copyright: 2006-2010 Eva Drud, Dominik Wagenfuehr, Thorsten Panknin, Dominik Honnef
+% Lizenz: CC-BY-SA 3.0 Unported http://creativecommons.org/licenses/by-sa/3.0/deed.de
+%**************************************************************
+% neuer Spaltentyp für Tabellen
+\newcolumntype{C}[1]{>{\centering}p{#1}}
+
 \newcommand{\PDFonly}[1]{#1}
 % Vor einem Abstand die Zeile strecken.
 \newboolean{AbstandSoftLineBreak}

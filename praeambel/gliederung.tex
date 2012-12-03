@@ -1,0 +1,139 @@
+%Inhaltsverzeichnis in Gliederung umbenennen
+%\addto\captionsngerman{%
+  \renewcommand{\contentsname}{Gliederung}
+%}
+
+% griechische Kleinbuchstaben für die Gliederung
+\newcommand{\greek}[1]{\ensuremath{\ifcase\value{#1}\or \mbox{\boldmath$\alpha$}\or \mbox{\boldmath$\beta$}\or \mbox{\boldmath$\gamma$}\or \mbox{\boldmath$\delta$}\or \mbox{\boldmath$\varepsilon$}\or \mbox{\boldmath$\zeta$}\or \mbox{\boldmath$\eta$}\or \mbox{\boldmath$\theta$}\or \mbox{\boldmath$\iota$}\or \mbox{\boldmath$\kappa$}\or \mbox{\boldmath$\lambda$}\or \mbox{\boldmath$\mu$}\or \mbox{\boldmath$\nu$}\or \mbox{\boldmath$\xi$}\or \mbox{\boldmath$o$}\or \mbox{\boldmath$\pi$}\or \mbox{\boldmath$\varrho$}\or \mbox{\boldmath$\sigma$}\or \mbox{\boldmath$\tau$}\or \mbox{\boldmath$\upsilon$}\or \mbox{\boldmath$\varphi$}\or \mbox{\boldmath$\chi$}\or \mbox{\boldmath$\psi$}\or \mbox{\boldmath$\omega$}\fi}}
+
+\makeatletter 
+% doppelte Aufzählung
+\providecommand*{\doublegreek}[1]{\greek{#1}{\greek{#1}}}
+\providecommand*{\doublealph}[1]{\alph{#1}{\alph{#1}}}
+\makeatother
+
+% KOMA-Script 
+\setcounter{secnumdepth}{13}   % Nummerierungstiefe Überschriften 
+
+
+% \titleformat{⟨Überschriftenklasse⟩}[Absatzformatierung⟩]{⟨Textformatierung⟩} {⟨Nummerierung⟩}{⟨Abstand zwischen Nummerierung und Überschriftentext⟩}{⟨Code vor der Überschrift⟩}[⟨Code nach der Überschrift⟩]
+% \titlespacing{⟨Überschriftenklasse⟩}{⟨Linker Einzug⟩}{⟨Platz oberhalb⟩}{⟨Platz unterhalb⟩}[⟨rechter Einzug⟩]
+
+% \part
+\titleformat{\part}[display]{\normalfont\bfseries\LARGE\filcenter}{\thepart}{.5em}{}
+\renewcommand \thepart {}
+
+% \chapter
+\titleformat{\chapter}[hang]{\normalsize\bfseries}{\thechapter}{.5em}{}
+\titlespacing{\chapter}{0pt}{-2em}{-1em}
+\renewcommand \thechapter {\pg{\arabic{chapter}}}
+
+% \section
+\titleformat{\section}[hang]{\normalsize\bfseries}{\thesection}{.5em}{}
+\titlespacing{\section}{0pt}{24pt}{-1em}
+\renewcommand \thesection {\Alph{section}}
+
+% \subsection
+\titleformat{\subsection}[hang]{\normalsize\bfseries}{\thesubsection}{.5em}{}
+\titlespacing{\subsection}{0pt}{24pt}{-1em}
+\renewcommand \thesubsection {\Roman{subsection}.}
+
+% \subsubsection
+\titleformat{\subsubsection}[hang]{\normalsize\bfseries}{\thesubsubsection}{.5em}{}
+\titlespacing{\subsubsection}{0pt}{24pt}{-1em}
+\renewcommand \thesubsubsection {\arabic{subsubsection}.}
+
+% \paragraph
+\titleformat{\paragraph}[hang]{\normalsize\bfseries}{\theparagraph}{.5em}{}
+\titlespacing{\paragraph}{0pt}{24pt}{-1em}
+\renewcommand \theparagraph {\alph{paragraph})}
+
+% \subparagraph
+\titleformat{\subparagraph}[hang]{\normalsize\bfseries}{\thesubparagraph}{.5em}{}
+\titlespacing{\subparagraph}{0pt}{24pt}{-1em}
+\renewcommand \thesubparagraph {\doublealph{paragraph})}
+
+% \subsubparagraph
+\titleclass{\subsubparagraph}{straight}[\subparagraph]
+\titleformat{\subsubparagraph}[hang]{\normalsize\bfseries}{\greek{subsubparagraph})}{.5em}{}[]
+\titlespacing{\subsubparagraph}{0pt}{24pt}{-1em}
+\newcounter{subsubparagraph}[subparagraph]
+\renewcommand \thesubsubparagraph {\greek{subsubparagraph})}
+
+% \fourfoldparagraph
+\titleclass{\fourfoldparagraph}{straight}[\subsubparagraph]
+\titleformat{\fourfoldparagraph}[hang]{\normalsize\bfseries}{\doublegreek{fourfoldparagraph})}{.5em}{}[]
+\titlespacing{\fourfoldparagraph}{0pt}{24pt}{-1em}
+\newcounter{fourfoldparagraph}[subsubparagraph]
+\renewcommand \thefourfoldparagraph {\doublegreek{fourfoldparagraph})}
+
+% \fourfoldparagraph
+\titleclass{\fivefoldparagraph}{straight}[\fourfoldparagraph]
+\titleformat{\fivefoldparagraph}[hang]{\normalsize\bfseries}{(\arabic{fivefoldparagraph})}{.5em}{}[]
+\titlespacing{\fivefoldparagraph}{0pt}{24pt}{-1em}
+\newcounter{fivefoldparagraph}[fourfoldparagraph]
+\renewcommand \thefivefoldparagraph {(\arabic{fivefoldparagraph})}
+
+% \sixfoldparagraph
+\titleclass{\sixfoldparagraph}{straight}[\fivefoldparagraph]
+\titleformat{\sixfoldparagraph}[hang]{\normalsize\bfseries}{(\alph{sixfoldparagraph})}{.5em}{}[]
+\titlespacing{\sixfoldparagraph}{0pt}{24pt}{-1em}
+\newcounter{sixfoldparagraph}[fivefoldparagraph]
+\renewcommand \thesixfoldparagraph {(\alph{sixfoldparagraph})}
+
+% \sevenfoldparagraph
+\titleclass{\sevenfoldparagraph}{straight}[\sixfoldparagraph]
+\titleformat{\sevenfoldparagraph}[hang]{\normalsize\bfseries}{(\doublealph{sevenfoldparagraph})}{.5em}{}[]
+\titlespacing{\sevenfoldparagraph}{0pt}{24pt}{-1em}
+\newcounter{sevenfoldparagraph}[sixfoldparagraph]
+\renewcommand \thesevenfoldparagraph {(\doublealph{sevenfoldparagraph})}
+
+% \eightfoldparagraph
+\titleclass{\eightfoldparagraph}{straight}[\sevenfoldparagraph]
+\titleformat{\eightfoldparagraph}[hang]{\normalsize\bfseries}{(\greek{eightfoldparagraph})}{.5em}{}[]
+\titlespacing{\eightfoldparagraph}{0pt}{24pt}{-1em}
+\newcounter{eightfoldparagraph}[sevenfoldparagraph]
+\renewcommand \theeightfoldparagraph {(\greek{eightfoldparagraph})}
+
+% \eightfoldparagraph
+\titleclass{\ninefoldparagraph}{straight}[\sevenfoldparagraph]
+\titleformat{\ninefoldparagraph}[hang]{\normalsize\bfseries}{(\doublegreek{ninefoldparagraph})}{.5em}{}[]
+\titlespacing{\ninefoldparagraph}{0pt}{24pt}{-1em}
+\newcounter{ninefoldparagraph}[sevenfoldparagraph]
+\renewcommand \theninefoldparagraph {(\greek{ninefoldparagraph})}
+
+% richtig formatierte in der Gliederung ausgeben
+\makeatletter
+\newcommand{\l@subsubparagraph}{\bprot@dottedtocline{7}{10em}{7em}}
+\newcommand{\l@fourfoldparagraph}{\bprot@dottedtocline{8}{10em}{7em}}
+\newcommand{\l@fivefoldparagraph}{\bprot@dottedtocline{9}{10em}{7em}}
+\newcommand{\l@sixfoldparagraph}{\bprot@dottedtocline{10}{10em}{7em}}
+\newcommand{\l@sevenfoldparagraph}{\bprot@dottedtocline{11}{10em}{7em}}
+\newcommand{\l@eightfoldparagraph}{\bprot@dottedtocline{12}{10em}{7em}}
+\newcommand{\l@ninefoldparagraph}{\bprot@dottedtocline{13}{10em}{7em}} 
+\makeatother
+
+% für hyperref
+\makeatletter 
+	\providecommand*{\toclevel@subsubparagraph}{7}
+	\providecommand*{\toclevel@fourfoldparagraph}{8}
+	\providecommand*{\toclevel@fivefoldparagraph}{9}
+	\providecommand*{\toclevel@sixfoldparagraph}{10}
+	\providecommand*{\toclevel@sevenfoldparagraph}{11}
+	\providecommand*{\toclevel@eightfoldparagraph}{12}
+	\providecommand*{\toclevel@ninefoldparagraph}{13}
+\makeatother
+
+
+\newcommand{\initAnhang}{
+    \renewcommand{\thepage}{\Alph{chapter}\ \arabic{page}}
+    \titleformat{\chapter}[hang]{\normalsize\bfseries}{\Alph{chapter}}{.5em}{}
+    \titlespacing{\chapter}{0pt}{-2em}{0em}
+    \renewcommand \thechapter {\Alph{chapter}}
+    \newpage
+}
+\newcommand{\anhang}[1]{
+    \setcounter{page}{1}
+    \input{#1}
+    \newpage
+}

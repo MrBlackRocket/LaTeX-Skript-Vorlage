@@ -1,0 +1,51 @@
+% ========
+% Bibliographie und Fußnoten
+
+% Konfiguriert das jurabib-Paket. Kommentare aus der Dokumentation
+\jurabibsetup{%
+	authorformat=italic, 		% Autor kursiv
+	titleformat={commasep,all},	% Komma zwischen Autor/Bearbeiter und Titel im Zitat;
+	annotatorformat=italic, 	% Bearbeiter kursiv
+	annotatorlastsep=divis, 	% Bearbeiter nach Bindestrich
+	commabeforerest, 			% Komma nach Verfasser (vor dem Rest)
+	crossref={long,dynamic}, 	% Lange Querverweise (auf Festschriften etwa)
+	howcited=compare, 			%"zitiert als...", wenn shorttitle anders als title
+	pages={always,test}, 		% zitierten Seitenbereich immer ausgeben (always),
+	bibformat={tabular,ibidem},	% Litverz. tabellarisch, mit der-/dieselbe
+	lookforgender, 				% Auf das gender-Feld achten, um ders./dies. Zitate zu ermglichen
+	superscriptedition=switch, 	% Hochgestellte Auflage, wenn ssedition=1 in .bib
+	dotafter=bibentry, 			% Punkt nach jedem Eintrag im Lit.verzeichnis
+}
+
+\citetitlefortype{article,periodical,incollection} % Diese immer mit Titel zitieren
+\formatpages[~]{article}{(}{)} % Zeitschriften als JZ 2001, 1057, (S.) %[, ]
+\formatpages[~]{incollection}{(}{)} % Sammbelbandbeiträge als FS xy, 1057, (S.) %[, ]
+
+%Bei Festschriften und Zeitschriftenartikeln: "`in"' vor Titel der Sammlung
+\renewcommand{\bibjtsep}{In: } 
+\renewcommand{\bibbtsep}{In: } 
+
+%Bei Periodika (AcP et.al.) die Jahreszahl in runde (statt eckige) Klammern setzen.
+\renewcommand*{\bibpldelim}{(}
+\renewcommand*{\bibprdelim}{)}
+
+%Linke Spalte des Lit.verz. soll ein Drittel der ges. Textbreite einnehmen
+\renewcommand*{\bibleftcolumn}{\textwidth/3}
+
+%Nicht Punkt, sondern Komma nach Auflage
+\DeclareRobustCommand{\jbaensep}{,}
+
+%Bei Artikeln: Heft-Nummer in Klammern hinter dem Erscheinungsjahr, etwa 2002(7). (aus jurabib-Gruppe)
+\DeclareRobustCommand{\artnumberformat}[1]{(#1)}
+
+%Kein Komma hinter Zeitschriftenname (aus: jurabib-Gruppe #661)
+\AddTo\bibsgerman{\def\ajtsep{}}
+
+% Keine hochgestellten Ziffern in der Fussnote (KOMA-Script-spezifisch):
+\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
+
+% Abstand Text <-> Fussnote
+\addtolength{\skip\footins}{\baselineskip}
+
+% Verhindert das Fortsetzen von Fussnoten auf der gegenüberligenden Seite
+\interfootnotelinepenalty=10000
