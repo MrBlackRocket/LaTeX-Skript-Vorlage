@@ -19,16 +19,16 @@
 \renewcommand{\p@randnr}{\@rdnrname} % Bei Verweisen Rdnr. vor Zahl ausgegeben
 \renewcommand{\p@zwrandnr}{\@rdnrname} % Bei Verweisen Rdnr. vor Zahl\,Buchstabe ausgegeben
 
-% marginpar Config
-\setlength{\marginparwidth}{15mm}
-\marginparsep5mm
+% marginnote Config
+\setlength{\marginparwidth}{10mm}
+\marginparsep2mm
 \normalmarginpar
 
 % Zähler über Makro erhöhen und am Rand als Randnummer ausgeben
-\newcommand{\randnummer}{\newrandnummer\marginpar{\vspace{-4pt}{\strut\\\centering\textbf{\therandnr}}}}
+\newcommand{\randnummer}{\newrandnummer\marginnote{\strut\\\quad\textbf{\therandnr}}}
 
 % Makro für Zwischenrandnummern
-\newcommand{\zwischenrandnummer}{\newzwischenrandnummer\marginpar{\strut\\\centering\textbf{\thezwrandnr}}}
+\newcommand{\zwischenrandnummer}{\newzwischenrandnummer\marginnote{\strut\\\quad\textbf{\thezwrandnr}}}
 \makeatother
 %**************************************************************
 
@@ -50,56 +50,50 @@
 
 %Abkürzungen - vornehmlich für schmale Zwischenräume (\,) nützlich
 %benötigt für einige Befehle jurabib. Befehl nachschlagen, mit dem überprüft werden kann, ob geladen!
-\providecommand{\Abs}[1]{Abs.\,#1}
-\providecommand{\aF}{a.\,F.\xspace} %\aF => a. F.
-\providecommand{\andM}{\textbf{a.\,M.}\xspace} %\andM => a. M. in Fettdruck
-\providecommand{\euro}[1]{#1\,\EUR} %\euro{x} => x (Eurosymbol)
-\providecommand{\folg}{\,f.\xspace} %f. nach kurzem Leerraum
-\providecommand{\ffolg}{\,ff.\xspace} %ff. nach kurzem Leerraum
-\providecommand{\hL}{h.\,L.\xspace} %\hL => h.L.
-\providecommand{\hM}{h.\,M.\xspace} %\hM => h. M.
-\providecommand{\idR}{i.\,d.\,R.\xspace} %\idR => i. d. R.
-\providecommand{\iHv}{i.\,H.\,v.\xspace} %\iHv => i. H. v.
-\providecommand{\iSd}{i.\,S.\,d.\xspace} %\iSd => i. S. d.
-\providecommand{\iSv}{i.\,S.\,v.\xspace} %\iSv => i. S. v.
-\providecommand{\iVm}{i.\,V.\,m.\xspace} %\iVm => i. V. m.
-\providecommand{\ja}{\ding{'63}\xspace}%\ensuremath{\bigoplus}%(+) 
-\providecommand{\mwN}{m.\,w.\,N.\xspace} %\mwN => m. w. N.
-\providecommand{\LWL}{\bfseries\underline{\emph{LWL}}}%steht für Literaturwunschliste, also für Blindzitate. Alles folgende wird fett!
-\providecommand{\nein}{\ding{'67}\xspace}%\ensuremath{\ominus}%(-)
-\providecommand{\nF}{n.\,F.\xspace} %\nF => n. F.
-\providecommand{\Nr}[1]{Nr.\,#1}
-\providecommand{\Nro}[1]{Nr.\,#1}
-\providecommand{\pg}[1]{\S\,#1} %\pg{x} => (Paragraf) x
-\providecommand{\Pg}[1]{\SSS\,#1} %\Pg{x} => (Paragrafen) x 
-\providecommand{\pgAbs}[2]{\S\,#1 Abs.\,#2} %\pgAbs{x}{y} => (Paragraf) x Abs. y
-\providecommand{\pgAbsS}[3]{\S\,#1 Abs.\,#2 S.\,#3}
-\providecommand{\pgRn}[2]{\S\,#1 Rn.\,#2} %\pg{x}{y} => (Paragraf) x Rn. y
-\providecommand{\pgS}[2]{\S\,#1 S.\,#2}
-\providecommand{\Rn}[1]{Rn.\,#1}
-\providecommand{\Satz}[1]{S.\,#1}
-\providecommand{\Seite}[1]{S.\,#1}
-\providecommand{\zBsp}{z.\,B.}
-\providecommand{\fremdwort}[2]{\foreignlanguage{#1}{\itshape{}#2}}%\fremdwort{#1=Sprache}{#2=Text}
-\newcommand*{\qll}[1]{\emph{#1}}%           fuer Quellen
-\newcommand{\code}[1]{\texttt{#1}}%         fuer Computeranweisungen, tags o.ae.
-\newcommand*{\marke}[1]{{\scshape #1}}%     Markennamen % \texttrademark (TM) oder \textregistered (R)?
-\newcommand*{\firma}[1]{{\scshape #1}}%     Unternehmensbezeichnung
-\newcommand*{\prdbez}[1]{%                  Produktbezeichnung
-  {\scshape #1}%
-  \index{#1}%
-}
-\providecommand{\altzahl}[1]{{\oldstyle #1}}
-%\DeclareTextSymbol{\textNr}{TS1}{'233}
+\newcommand{\Abs}[1]{\acs{Abs}\,#1\xspace}
+\newcommand{\aF}{\acs{aF}\xspace}
+\newcommand{\aM}{\acs{aM}\xspace}
+\newcommand{\Art}{\acs{Art}\xspace}
+\newcommand{\euro}[1]{#1\,\EUR\xspace}
+\newcommand{\f}{\acs{f}\xspace}
+\newcommand{\ff}{\acs{ff}\xspace}
+\newcommand{\hL}{\acs{hL}\xspace}
+\newcommand{\hM}{\acs{hM}\xspace}
+\newcommand{\idR}{\acs{idR}\xspace}
+\newcommand{\iHv}{\acs{iHv}\xspace}
+\newcommand{\iSd}{\acs{iSd}\xspace} %%
+\newcommand{\iSv}{\acs{iSv}\xspace}
+\newcommand{\iVm}{\acs{iVm}\xspace}
+\newcommand{\ja}{\ding{'63}\xspace}
+\newcommand{\mwN}{\acs{mwN}\xspace}
+\newcommand{\LWL}{{\bfseries\underline{\emph{\acs{LWL}}}}} % Literaturwunschliste, also für Blindzitate.
+\newcommand{\nein}{\ding{'67}\xspace}
+\newcommand{\nF}{\acs{nF}\xspace} 
+\newcommand{\Nr}[1]{\acs{Nr}\,#1\xspace}
+\newcommand{\pg}[1]{\S\,#1} %\pg{x} => (Paragraf) x
+\newcommand{\Pg}[1]{\SSS\,#1} %\Pg{x} => (Paragrafen) x 
+\newcommand{\pgAbs}[2]{\S\,#1 Abs.\,#2} %\pgAbs{x}{y} => (Paragraf) x Abs. y
+\newcommand{\pgAbsS}[3]{\S\,#1 Abs.\,#2 S.\,#3}
+\newcommand{\pgRn}[2]{\S\,#1 Rn.\,#2} %\pg{x}{y} => (Paragraf) x Rn. y
+\newcommand{\pgS}[2]{\S\,#1 S.\,#2}
+\newcommand{\Rn}[1]{Rn.\,#1}
+\newcommand{\zB}{\acs{zB}\xspace}
+\newcommand{\fremdwort}[2]{\foreignlanguage{#1}{\itshape{}#2}} %\fremdwort{#1=Sprache}{#2=Text}
+\newcommand{\qll}[1]{\emph{#1}}%           fuer Quellen
+\newcommand{\code}[1]{\texttt{#1}}%        fuer Computeranweisungen, tags o.ae.
+\newcommand{\marke}[1]{{\scshape #1}}%     Markennamen % \texttrademark (TM) oder \textregistered (R)?
+\newcommand{\firma}[1]{{\scshape #1}}%     Unternehmensbezeichnung
+\newcommand{\prdbez}[1]{{\scshape #1}\index{#1}} %Produktbezeichnung
 
 \newcommand*{\arr}{\(\rightarrow\)\space}
 \newcommand*{\arrr}{\(\longrightarrow\)\space}
 \newcommand*{\Arr}{\(\Rightarrow\)\space}
 \newcommand*{\Arrr}{\(\Longrightarrow\)\space}
 \newcommand*{\lrarr}{\(\leftrightarrow\)\space}
-
 \newcommand*{\larr}{\(\leftarrow\)}
 \newcommand*{\Larr}{\(\Leftarrow\)}
-
 \newcommand*{\darr}{\(\downarrow\)}
 \newcommand*{\Darr}{\(\Downarrow\)}
+\newcommand*{\carr}{\mbox{$\curvearrowright$}}
+
+\newcommand{\glink}[4]{\href{http://dejure.org/gesetze/#4/#2.html}{#1\xspace#2\xspace#3\xspace#4}}

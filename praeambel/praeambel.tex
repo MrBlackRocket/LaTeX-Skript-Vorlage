@@ -3,7 +3,6 @@
 %----------------------------------
 \input{./praeambel/preambelcommands.tex} % Quelle http://brcs.eu/d0fio
 
-
 % Schrift & Sprache
 \usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden 
 \usepackage[T1]{fontenc} % T1-Fonts
@@ -31,10 +30,12 @@
 \usepackage{colortbl} % erlaubt Farbige Zellen
 \usepackage[table]{xcolor} % alternierende farbige Tabellenzeilen
 \usepackage{booktabs} % Gestaltung der horizontalen Linien innerhalb einer Tabelle
+\usepackage{multirow}
+\usepackage{longtable}
 
 % JURA spezifische Pakete
 \usepackage{jurabib} % juristisches Literaturverzeichnis, Optionen mit \jurabibsetup
-\usepackage{acronym} % Abkürzungsverzeichnis
+\newcommand{\AlleAbkuerzungenAuflisten}[1]{\ifthenelse{\equal{#1}{ja}}{\usepackage{acronym}}{}\ifthenelse{\equal{#1}{nein}}{\usepackage[printonlyused]{acronym}}{}} % Abkürzungsverzeichnis
 \usepackage{enumitem} % Anpassbare Enumerates/Itemizes
 \usepackage{marginnote} % für Randnotizen (von den Randnummern verwendet)
 \usepackage{titlesec} % ermöglicht das anpassen der Titel
@@ -45,7 +46,6 @@
 \usetikzlibrary{calc,arrows,shadings,shadows}
 \newcommand\Loadedframemethod{tikz}
 \usepackage[framemethod=\Loadedframemethod]{mdframed}
-\usepackage{cmap} % to make the PDF files "searchable and copyable" in pdf viewer
 
 
 %----------------------------------
@@ -76,7 +76,7 @@
        % Bookmarks
        bookmarks=true,         % Erzeugung von Bookmarks
        bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
-       bookmarksopen=true,      % Expandierte Untermenues in Bookmarks
+       bookmarksopen=false,      % Expandierte Untermenues in Bookmarks
        bookmarksnumbered=true,  % Nummerierung der Bookmarks
        bookmarkstype=toc,       % Art der Verzeichnisses
        bookmarksdepth=3,
@@ -99,9 +99,6 @@
   }
 }
 \makeatother
-
-% URL Paket (darf erst nach hyperref geladen werden
-%\usepackage{url} 
 
 %----------------------------------
 % Config

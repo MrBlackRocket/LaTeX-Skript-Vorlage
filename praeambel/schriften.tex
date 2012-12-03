@@ -7,12 +7,18 @@
   	\renewcommand{\rmfamily}{\fdsfamily}
   	\addtokomafont{disposition}{\fdmfamily}
   	\setkomafont{sectioning}{\fdsfamily\bfseries\normalsize} 
-  	
+  	\urlstyle{rm}
   }{}
   \ifthenelse{\equal{#1}{times}}{
   	\usepackage{mathptmx}
   	\usepackage[scaled=.95]{helvet} 
   	\usepackage{courier} 
-  	\setkomafont{sectioning}{\rmfamily\bfseries\normalsize} 
+  	\urlstyle{rm}
+  }{}
+  \ifthenelse{\equal{#1}{palantino}}{
+    \usepackage{mathpazo}
+    \usepackage[scaled=.95]{helvet}
+    \usepackage{courier}
+    \urlstyle{rm}
   }{}
 }
