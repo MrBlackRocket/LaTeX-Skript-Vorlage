@@ -8,9 +8,9 @@
 
 ### Zu den folgenden Bedingungen:
 - **Namensnennung** — Sie müssen den Namen des Autors/Rechteinhabers in der von ihm festgelegten Weise nennen.
-___
+```
 <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">LaTeX-Skript-Vorlage</span> von <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Sebastian Bretag</span> steht unter einer <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Unported Lizenz</a>.
-___
+```
 
 - **Weitergabe unter gleichen Bedingungen** — Wenn Sie das lizenzierte Werk bzw. den lizenzierten Inhalt bearbeiten oder in anderer Weise erkennbar als Grundlage für eigenes Schaffen verwenden, dürfen Sie die daraufhin neu entstandenen Werke bzw. Inhalte nur unter Verwendung von Lizenzbedingungen weitergeben, die mit denen dieses Lizenzvertrages identisch oder vergleichbar sind.
 
